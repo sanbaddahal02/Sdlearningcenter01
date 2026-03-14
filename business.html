@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SD Learning Center</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background: #f4f4f4; }
+    header { background: #2c3e50; color: white; padding: 30px 20px; text-align: center; }
+    header h1 { margin: 0; font-size: 36px; }
+    header p { font-size: 18px; margin-top: 10px; }
+    nav { text-align: center; margin: 20px 0; }
+    nav a { margin: 0 15px; color: #3498db; text-decoration: none; font-weight: bold; }
+    section { padding: 40px 20px; max-width: 900px; margin: auto; background: white; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);}
+    .course { border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 10px; }
+    form { display: flex; flex-direction: column; }
+    form input, form select, form button { margin: 10px 0; padding: 12px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+    form button { background: #3498db; color: white; border: none; cursor: pointer; }
+    footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>SD Learning Center</h1>
+    <p>Online Accounts & Economics Classes for Class 9–12 (+2 Management). First month only Rs 500!</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#courses">Courses</a>
+    <a href="#signup">Join Now</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Courses Section -->
+  <section id="courses">
+    <h2>Our Courses</h2>
+    <div class="course">
+      <h3>Accounts - Class 9–12</h3>
+      <p>Learn Basic to Advanced Accounting. Live classes, recorded lessons, notes, and practice questions included.</p>
+    </div>
+    <div class="course">
+      <h3>Economics - Class 9–12 (+2)</h3>
+      <p>Understand concepts easily with our expert teachers. Live sessions, recorded lessons, and practice questions.</p>
+    </div>
+  </section>
+
+  <!-- Signup Section -->
+  <section id="signup">
+    <h2>Join SD Learning Center</h2>
+    <form id="signupForm">
+      <input type="text" name="fullname" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="text" name="school" placeholder="School / College Name" required>
+      <input type="text" name="address" placeholder="Current Address" required>
+      <select name="class" required>
+        <option value="">Select Class</option>
+        <option value="9">Class 9</option>
+        <option value="10">Class 10</option>
+        <option value="11">Class 11</option>
+        <option value="12">Class 12</option>
+      </select>
+      <button type="submit">Pay Rs 500 for 1st Month (via eSewa)</button>
+    </form>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@sdlearningcenter.com</p>
+    <p>Phone: +977-XXXXXXXXXX</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 SD Learning Center. All Rights Reserved.
+  </footer>
+
+  <!-- Script for demo form submission -->
+  <script>
+    const form = document.getElementById('signupForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! Your registration is received. Payment via eSewa will be processed next.');
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
