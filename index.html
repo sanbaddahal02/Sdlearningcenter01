@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sambad Dahal | 3D Professional Portfolio</title>
+    <title>Sambad Dahal | Professional Web Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #0f172a;
-            --secondary: #2563eb;
+            --secondary: #3b82f6;
             --accent: #10b981;
-            --white: #ffffff;
-            --bg-slate: #0f172a; /* Darker theme for better 3D depth */
+            --dark-bg: #0b0f1a;
+            --glass: rgba(255, 255, 255, 0.05);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-slate); color: white; line-height: 1.6; perspective: 1000px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--dark-bg); color: #e2e8f0; overflow-x: hidden; perspective: 1200px; }
 
-        /* Navigation */
-        nav { 
-            background: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
+        /* Floating Nav */
+        nav {
+            background: rgba(11, 15, 26, 0.8);
+            backdrop-filter: blur(15px);
             padding: 1.2rem 8%;
             display: flex;
             justify-content: space-between;
@@ -29,140 +29,140 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* 3D Container Styling */
-        .main-container { 
-            padding: 150px 10% 80px; 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 60px; 
-            align-items: center; 
+        /* Hero / About Hybrid Section */
+        .container {
+            max-width: 1200px;
+            margin: 150px auto 50px;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 80px;
+            align-items: center;
         }
 
-        /* The 3D Card Effect */
-        .card-3d {
+        /* 3D Profile Frame */
+        .profile-frame {
             position: relative;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
-            cursor: pointer;
+            transition: 0.6s;
+        }
+        .profile-frame:hover { transform: rotateY(-15deg) rotateX(10deg); }
+        .profile-img {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        .card-3d:hover {
-            transform: rotateY(10deg) rotateX(5deg) scale(1.02);
-        }
+        .about-text h1 { font-size: 3.5rem; color: #fff; margin-bottom: 0.5rem; }
+        .location { color: var(--secondary); font-weight: bold; margin-bottom: 1.5rem; display: block; }
+        .about-text p { font-size: 1.1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 20px; }
 
-        .profile-img { 
-            width: 100%; 
-            max-width: 400px; 
-            border-radius: 30px; 
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        /* Expertise Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 50px 8%;
+        }
+        .skill-card {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: 0.4s;
         }
+        .skill-card:hover { transform: translateZ(30px) translateY(-10px); background: rgba(255,255,255,0.1); }
+        .skill-card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
 
-        /* Text Content */
-        .about-text h2 { font-size: 3rem; margin-bottom: 1.5rem; background: linear-gradient(to right, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .badge { background: rgba(37, 99, 235, 0.2); color: #60a5fa; padding: 6px 16px; border-radius: 50px; border: 1px solid var(--secondary); margin-bottom: 1rem; display: inline-block; }
-
-        /* 3D Payment QR Card */
-        .payment-section { padding: 100px 10%; text-align: center; }
+        /* 3D Payment Section */
+        .payment-center { padding: 100px 8%; text-align: center; }
         .qr-card-3d {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(145deg, #1e293b, #0f172a);
             padding: 50px;
             border-radius: 40px;
             display: inline-block;
+            border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255,255,255,0.05);
-            transform: rotateX(10deg);
+            transform: rotateX(15deg);
             transition: 0.5s;
         }
-        .qr-card-3d:hover {
-            transform: rotateX(0deg) translateY(-10px);
-        }
+        .qr-card-3d:hover { transform: rotateX(0deg) scale(1.05); }
+        .qr-img { width: 220px; border-radius: 15px; margin: 25px 0; border: 4px solid #fff; }
 
-        .qr-img { 
-            width: 250px; 
-            border-radius: 20px; 
-            margin: 20px 0; 
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-        }
-
-        .esewa-name { color: var(--accent); font-weight: 800; font-size: 1.6rem; letter-spacing: 1px; }
-
-        /* Skills/Expertise */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 50px 10%; }
-        .skill-box {
-            background: rgba(255,255,255,0.03);
-            padding: 40px;
-            border-radius: 25px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: center;
+        .btn-whatsapp {
+            background: #25d366;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 30px;
             transition: 0.3s;
         }
-        .skill-box:hover { background: rgba(255,255,255,0.08); transform: translateZ(20px); }
-        .skill-box i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
+        .btn-whatsapp:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(37, 211, 102, 0.4); }
 
-        footer { padding: 50px; text-align: center; opacity: 0.6; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .about-text h2 { font-size: 2.2rem; }
-        }
+        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.6; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: 900; letter-spacing: 2px;">SD SOLUTIONS</div>
-        <div><i class="fas fa-map-marker-alt"></i> Dharan 17</div>
+        <div style="font-weight: 900; font-size: 1.4rem; color: #fff;">SAMBAD.DEV</div>
+        <div><i class="fas fa-phone-alt"></i> 9801697735</div>
     </nav>
 
-    <section class="main-container">
-        <div class="card-3d">
+    <div class="container">
+        <div class="profile-frame">
             <img src="sambad.jpg" alt="Sambad Dahal" class="profile-img">
         </div>
         <div class="about-text">
-            <span class="badge">Professional Webpage Maker</span>
-            <h2>Sambad Dahal</h2>
-            <p>I am a BBA student at Mahendra Multiple Campus, Dharan. I combine business management principles with professional web development to build high-performance digital solutions.</p>
-            <p style="margin-top: 20px; opacity: 0.8;">Based in Dharan 17, Sunsari, I help students and businesses excel through technology and academic coaching in Accounts and Economics.</p>
-            <br>
-            <a href="https://wa.me/9779801697735" style="color: #60a5fa; text-decoration: none; font-weight: bold;">
-                <i class="fab fa-whatsapp"></i> LET'S WORK TOGETHER
-            </a>
-        </div>
-    </section>
-
-    <div class="grid">
-        <div class="skill-box">
-            <i class="fas fa-cube"></i>
-            <h3>3D Web Design</h3>
-            <p>Modern, immersive interfaces that stand out from the competition.</p>
-        </div>
-        <div class="skill-box">
-            <i class="fas fa-university"></i>
-            <h3>BBA Insights</h3>
-            <p>Management strategies from Mahendra Multiple Campus applied to your project.</p>
-        </div>
-        <div class="skill-box">
-            <i class="fas fa-chalkboard-teacher"></i>
-            <h3>Academic Excellence</h3>
-            <p>Clear guidance in Economics and Accounts for future professionals.</p>
+            <span class="location">Dharan 17, Sunsari, Nepal</span>
+            <h1>Sambad Dahal</h1>
+            <p>I am a BBA student currently in my 1st semester at **Mahendra Multiple Campus, Dharan**. Combining my business education with my skills as a **Professional Webpage Maker**, I build high-performance digital identities.</p>
+            <p>I specialize in modern, responsive web design and provide expert academic coaching in **Accounts** and **Economics**.</p>
+            <a href="https://wa.me/9779801697735" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Hire Me Now</a>
         </div>
     </div>
 
-    <section class="payment-section">
+    <div class="grid">
+        <div class="skill-card">
+            <i class="fas fa-code"></i>
+            <h3>Professional Web Design</h3>
+            <p>Crafting custom websites with clean code, 3D aesthetics, and high responsiveness.</p>
+        </div>
+        <div class="skill-card">
+            <i class="fas fa-university"></i>
+            <h3>Management Expert</h3>
+            <p>Applying BBA theories from Mahendra Multiple Campus to business growth strategies.</p>
+        </div>
+        <div class="skill-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Academic Coach</h3>
+            <p>Mastering the core concepts of Economics and Accounts for future success.</p>
+        </div>
+    </div>
+
+    <section class="payment-center">
         <div class="qr-card-3d">
-            <h2 style="margin-bottom: 10px;">Payment Portal</h2>
-            <p style="opacity: 0.7;">Secure transaction via eSewa</p>
+            <h2 style="color: #fff;">Secure Transaction</h2>
+            <p style="opacity: 0.6;">Scan for tuition or web services via eSewa</p>
             <img src="esewa.png" alt="eSewa QR Code" class="qr-img">
-            <p class="esewa-name">Tara Devi Dahal</p>
-            <p style="letter-spacing: 2px;">9801697735</p>
+            <div style="color: var(--accent); font-size: 1.5rem; font-weight: 800;">Tara Devi Dahal </div>
+            <div style="letter-spacing: 2px;">9801697735 </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Sambad Dahal | Dharan 17, Sunsari, Nepal</p>
+        <p>&copy; 2026 Sambad Dahal Solutions. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Dharan 17, Sunsari, Nepal</p>
     </footer>
 
 </body>
