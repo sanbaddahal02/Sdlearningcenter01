@@ -1,91 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SD Learning Center</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sambad Dahal | Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Modern Design System */
+        :root {
+            --primary: #0f172a;
+            --secondary: #2563eb;
+            --accent: #10b981;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
+            --gradient: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
 
-<style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #f1f5f9; color: #1e293b; overflow-x: hidden; }
 
-body{
-font-family: Arial;
-margin:0;
-background:#f4f6f9;
-text-align:center;
-}
+        /* Floating Navigation */
+        nav { 
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 1rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
 
-.header{
-background:#0a2540;
-color:white;
-padding:60px;
-}
+        /* Hero Section with Animation */
+        .hero { 
+            background: var(--gradient);
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 10px; animation: fadeInDown 1s ease; }
+        .hero p { font-size: 1.5rem; opacity: 0.9; margin-bottom: 30px; animation: fadeInUp 1s ease; }
 
-.section{
-padding:40px;
-}
+        /* About Me: The "Beauty" Layout */
+        .about-section { padding: 100px 10%; display: flex; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .profile-container { flex: 1; position: relative; min-width: 300px; }
+        .profile-img { 
+            width: 100%; 
+            border-radius: 30px; 
+            box-shadow: 20px 20px 60px #d1d5db, -20px -20px 60px #ffffff;
+            transition: transform 0.5s ease;
+        }
+        .profile-img:hover { transform: translateY(-10px) rotate(2deg); }
+        .profile-container::after {
+            content: '';
+            position: absolute;
+            top: -20px; left: -20px; width: 100px; height: 100px;
+            border-top: 5px solid var(--secondary); border-left: 5px solid var(--secondary);
+            border-radius: 20px 0 0 0;
+        }
 
-.ceo{
-margin-top:20px;
-}
+        .about-content { flex: 1.5; min-width: 300px; }
+        .tag { background: #dbeafe; color: var(--secondary); padding: 5px 15px; border-radius: 50px; font-weight: bold; font-size: 0.9rem; }
+        .about-content h2 { font-size: 3rem; margin: 20px 0; color: var(--primary); }
 
-.ceo img{
-width:150px;
-border-radius:50%;
-}
+        /* Service Cards */
+        .services { padding: 80px 10%; background: #f8fafc; text-align: center; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
+        .card { 
+            background: white; padding: 40px; border-radius: 20px; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .card:hover { transform: scale(1.05); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+        .card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
 
-.button{
-background:#1a73e8;
-color:white;
-padding:12px 25px;
-text-decoration:none;
-border-radius:6px;
-display:inline-block;
-margin-top:15px;
-}
+        /* Payment Center - "Esewa Themed" */
+        .payment { padding: 100px 10%; text-align: center; background: white; }
+        .qr-wrapper { 
+            background: #f8fafc; padding: 40px; border-radius: 30px; 
+            display: inline-block; border: 2px dashed var(--accent);
+        }
+        .qr-img { width: 250px; border-radius: 15px; margin: 20px 0; border: 5px solid white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .esewa-id { color: var(--accent); font-size: 1.4rem; font-weight: 800; }
 
-.qr img{
-width:200px;
-margin-top:20px;
-}
+        /* Animations */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-</style>
+        footer { background: var(--primary); color: white; padding: 50px 10%; text-align: center; }
+        
+        .contact-btn {
+            background: #25d366; color: white; padding: 15px 40px; 
+            border-radius: 50px; text-decoration: none; font-weight: bold;
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-section { padding: 60px 5%; text-align: center; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-<h1>SD Learning Center</h1>
-<p>Online Classes for Class 9–12</p>
-<a class="button" href="https://wa.me/9779801697735">Join on WhatsApp</a>
-</div>
+    <nav>
+        <div class="logo">SD Solutions</div>
+        <div style="font-weight: 600;"><i class="fas fa-map-marker-alt" style="color: var(--secondary);"></i> Dharan 17, Sunsari</div>
+    </nav>
 
-<div class="section ceo">
+    <header class="hero">
+        <h1>Sambad Dahal</h1>
+        <p>BBA Student | Professional Webpage Maker | Educator</p>
+        <a href="https://wa.me/9779801697735" class="contact-btn">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+    </header>
 
-<h2>CEO</h2>
+    <section class="about-section" id="about">
+        <div class="profile-container">
+            <img src="sambad.jpg" alt="Sambad Dahal" class="profile-img">
+        </div>
+        <div class="about-content">
+            <span class="tag">BBA Student @ Mahendra Multiple Campus</span>
+            <h2>Crafting Digital Excellence</h2>
+            <p>I am a first-semester BBA student based in **Dharan 17, Sunsari**. Balancing the analytical world of management at **Mahendra Multiple Campus** with the creative world of web design, I help businesses and students achieve their goals through technology.</p>
+            <p style="margin-top: 20px;">I specialize in creating beautiful, responsive websites that tell a story, just like the one you are viewing right now.</p>
+        </div>
+    </section>
 
-<img src="sambad.jpg">
+    <section class="services">
+        <h2 style="font-size: 2.5rem; color: var(--primary);">My Expertise</h2>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Web Development</h3>
+                <p>Custom, professional webpages built with clean code and modern aesthetics.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-book-open"></i>
+                <h3>Academic Tutoring</h3>
+                <p>Providing clear and effective coaching in **Accounts** and **Economics**.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Management</h3>
+                <p>Applying BBA principles from Mahendra Multiple Campus to real-world projects.</p>
+            </div>
+        </div>
+    </section>
 
-<h3>Sambad Dahal</h3>
+    <section class="payment">
+        <div class="qr-wrapper">
+            <h2 style="color: var(--primary); margin-bottom: 10px;">Quick Payment</h2>
+            <p>Scan to complete transaction via eSewa</p>
+            <img src="esewa.png" alt="eSewa QR Code" class="qr-img">
+            <p class="esewa-id">Tara Devi Dahal</p>
+            <p>ID: 9801697735</p>
+        </div>
+    </section>
 
-<p>Contact: 9801697735</p>
-
-</div>
-
-<div class="section qr">
-
-<h2>Pay with eSewa</h2>
-
-<p>Scan the QR code</p>
-
-<img src="esewa.png">
-
-</div>
-
-<div class="section">
-
-<h2>Subjects</h2>
-
-<p>Accounts | Economics</p>
-
-</div>
+    <footer>
+        <p>&copy; 2026 Sambad Dahal. All Rights Reserved.</p>
+        <p style="opacity: 0.6; font-size: 0.9rem; margin-top: 10px;">Professional Webpage Maker | Dharan 17, Sunsari, Nepal</p>
+    </footer>
 
 </body>
 </html>
