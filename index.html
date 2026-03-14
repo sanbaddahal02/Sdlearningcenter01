@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sambad Dahal | Sdlearningcenter</title>
+    <title>Sambad Dahal | CEO & Web Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -12,16 +12,18 @@
             --accent: #10b981;
             --dark-bg: #0b0f1a;
             --glass: rgba(255, 255, 255, 0.05);
+            --text-main: #e2e8f0;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--dark-bg); color: #e2e8f0; overflow-x: hidden; perspective: 1200px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--dark-bg); color: var(--text-main); overflow-x: hidden; perspective: 1200px; }
 
-        /* Floating Nav */
+        /* Floating Navigation */
         nav {
-            background: rgba(11, 15, 26, 0.8);
+            background: rgba(11, 15, 26, 0.85);
             backdrop-filter: blur(15px);
-            padding: 1.2rem 8%;
+            padding: 1rem 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -31,137 +33,235 @@
             z-index: 1000;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
+        .nav-logo { font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; color: #fff; text-decoration: none; }
 
-        /* Hero / About Hybrid Section */
-        .container {
+        /* Hero Section */
+        .hero {
             max-width: 1200px;
-            margin: 150px auto 50px;
+            margin: 140px auto 60px;
             padding: 0 5%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 80px;
+            gap: 60px;
             align-items: center;
         }
 
-        /* 3D Profile Frame */
-        .profile-frame {
+        .profile-3d-wrap {
             position: relative;
             transform-style: preserve-3d;
-            transition: 0.6s;
+            transition: 0.6s ease;
         }
-        .profile-frame:hover { transform: rotateY(-15deg) rotateX(10deg); }
+        .profile-3d-wrap:hover { transform: rotateY(-10deg) rotateX(5deg); }
         .profile-img {
             width: 100%;
-            border-radius: 20px;
+            border-radius: 25px;
             border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
         }
 
-        .about-text h1 { font-size: 3.5rem; color: #fff; margin-bottom: 0.5rem; }
-        .location { color: var(--secondary); font-weight: bold; margin-bottom: 1.5rem; display: block; }
-        .about-text p { font-size: 1.1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 20px; }
+        .hero-content h1 { font-size: 3.5rem; color: #fff; margin-bottom: 10px; }
+        .ceo-tag { 
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 1px solid var(--secondary);
+        }
+        .hero-content p { font-size: 1.15rem; line-height: 1.8; margin-bottom: 25px; opacity: 0.9; }
 
-        /* Expertise Grid */
-        .grid {
+        /* Grid Services */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            padding: 50px 8%;
+            padding: 60px 8%;
         }
-        .skill-card {
+        .service-card {
             background: var(--glass);
             padding: 40px;
             border-radius: 24px;
             border: 1px solid rgba(255,255,255,0.1);
             text-align: center;
-            transition: 0.4s;
+            transition: 0.4s ease;
         }
-        .skill-card:hover { transform: translateZ(30px) translateY(-10px); background: rgba(255,255,255,0.1); }
-        .skill-card i { font-size: 2.5rem; color: var(--secondary); margin-bottom: 20px; }
+        .service-card:hover { 
+            transform: translateY(-15px) translateZ(20px); 
+            background: rgba(255,255,255,0.08);
+            border-color: var(--secondary);
+        }
+        .service-card i { font-size: 3rem; color: var(--secondary); margin-bottom: 20px; }
 
-        /* 3D Payment Section */
-        .payment-center { padding: 100px 8%; text-align: center; }
-        .qr-card-3d {
-            background: linear-gradient(145deg, #1e293b, #0f172a);
+        /* Admission Form Styling */
+        .admission-section { padding: 80px 8%; background: rgba(0,0,0,0.2); }
+        .form-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #1e293b, #0b0f1a);
             padding: 50px;
-            border-radius: 40px;
-            display: inline-block;
+            border-radius: 35px;
             border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-            transform: rotateX(15deg);
-            transition: 0.5s;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
         }
-        .qr-card-3d:hover { transform: rotateX(0deg) scale(1.05); }
-        .qr-img { width: 220px; border-radius: 15px; margin: 25px 0; border: 4px solid #fff; }
-
-        .btn-whatsapp {
-            background: #25d366;
-            color: white;
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .input-box { display: flex; flex-direction: column; gap: 10px; }
+        .input-box label { font-size: 0.9rem; color: var(--secondary); font-weight: bold; }
+        .input-box input, .input-box select {
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        .input-box input:focus { border-color: var(--secondary); outline: none; background: rgba(255,255,255,0.1); }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
             margin-top: 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            cursor: pointer;
             transition: 0.3s;
         }
-        .btn-whatsapp:hover { transform: scale(1.1); box-shadow: 0 0 30px rgba(37, 211, 102, 0.4); }
+        .btn-submit:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4); }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.6; }
+        /* eSewa 3D Card */
+        .payment-box {
+            margin: 100px auto;
+            text-align: center;
+            perspective: 1000px;
+        }
+        .qr-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 30px;
+            display: inline-block;
+            color: #333;
+            transform: rotateX(10deg);
+            transition: 0.5s;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+        .qr-card:hover { transform: rotateX(0deg) scale(1.05); }
+        .qr-img { width: 230px; border-radius: 10px; margin: 20px 0; border: 1px solid #eee; }
+
+        footer { padding: 60px 8%; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .form-card { padding: 30px; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div style="font-weight: 900; font-size: 1.4rem; color: #fff;">SAMBAD.DEV</div>
-        <div><i class="fas fa-phone-alt"></i> 9801697735</div>
+        <a href="#" class="nav-logo">SAMBAD DAHAL</a>
+        <div style="font-weight: bold;"><i class="fas fa-phone-alt"></i> 9801697735</div>
     </nav>
 
-    <div class="container">
-        <div class="profile-frame">
+    <header class="hero">
+        <div class="profile-3d-wrap">
             <img src="sambad.jpg" alt="Sambad Dahal" class="profile-img">
         </div>
-        <div class="about-text">
-            <span class="location">Dharan 17, Sunsari, Nepal</span>
+        <div class="hero-content">
+            <span class="ceo-tag">CEO - SD Learning Center</span>
             <h1>Sambad Dahal</h1>
-            <p>I am a BBA student currently in my 1st semester at **Mahendra Multiple Campus, Dharan**. Combining my business education with my skills as a **Professional Webpage Maker**, I build high-performance digital identities.</p>
-            <p>I specialize in modern, responsive web design and provide expert academic coaching in **Accounts** and **Economics**.</p>
-            <a href="https://wa.me/9779801697735" class="btn-whatsapp"><i class="fab fa-whatsapp"></i> Hire Me Now</a>
+            <p>
+                Namaste! Ma chai BBA paddai gardaixu **Mahendra Multiple Campus, Dharan** ma ra ma ek **Web Developer** pani ho. 
+                Ma chai **SD Learning Center** ko CEO ho.
+            </p>
+            <p>
+                Yeta uta hamro company bata learn garnuhunxa vane ma chaii tapaiharuko lagi coaching ko bandabasta garxu. 
+                Hamro center ma Class 9 dekhi 12 samma ko specialized coaching hunxa. Join garna ko lagi diyeko form varnu hola!
+            </p>
+            <a href="#admission" style="background: var(--secondary); color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; display: inline-block;">
+                Get Admission <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Web Development</h3>
+            <p>Building high-performance, 3D responsive websites for modern brands.</p>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Business Management</h3>
+            <p>Applying BBA expertise from Mahendra Multiple Campus to help your business grow.</p>
+        </div>
+        <div class="service-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Expert Coaching</h3>
+            <p>Quality education for Classes 9-12 specializing in Accounts and Economics.</p>
         </div>
     </div>
 
-    <div class="grid">
-        <div class="skill-card">
-            <i class="fas fa-code"></i>
-            <h3>Professional Web Design</h3>
-            <p>Crafting custom websites with clean code, 3D aesthetics, and high responsiveness.</p>
-        </div>
-        <div class="skill-card">
-            <i class="fas fa-university"></i>
-            <h3>Management Expert</h3>
-            <p>Applying BBA theories from Mahendra Multiple Campus to business growth strategies.</p>
-        </div>
-        <div class="skill-card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Academic Coach</h3>
-            <p>Mastering the core concepts of Economics and Accounts for future success.</p>
-        </div>
-    </div>
-
-    <section class="payment-center">
-        <div class="qr-card-3d">
-            <h2 style="color: #fff;">Secure Transaction</h2>
-            <p style="opacity: 0.6;">Scan for tuition or web services via eSewa</p>
-            <img src="esewa.png" alt="eSewa QR Code" class="qr-img">
-            <div style="color: var(--accent); font-size: 1.5rem; font-weight: 800;">Tara Devi Dahal </div>
-            <div style="letter-spacing: 2px;">9801697735 </div>
+    <section class="admission-section" id="admission">
+        <div class="form-card">
+            <h2 style="text-align: center; color: #fff; margin-bottom: 10px; font-size: 2.2rem;">Admission Form</h2>
+            <p style="text-align: center; opacity: 0.7; margin-bottom: 40px;">SD Learning Center - Coaching Classes (9-12)</p>
+            
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+                <div class="form-grid">
+                    <div class="input-box">
+                        <label>Student Name (विद्यार्थीको नाम)</label>
+                        <input type="text" name="name" placeholder="Full Name" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Address (ठेगाना)</label>
+                        <input type="text" name="address" placeholder="e.g. Dharan 17, Sunsari" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Age (उमेर)</label>
+                        <input type="number" name="age" placeholder="Age" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Phone Number (सम्पर्क नम्बर)</label>
+                        <input type="tel" name="phone" placeholder="98XXXXXXXX" required>
+                    </div>
+                    <div class="input-box">
+                        <label>School/College Name</label>
+                        <input type="text" name="school" placeholder="Institution name" required>
+                    </div>
+                    <div class="input-box">
+                        <label>Class Level (कक्षा)</label>
+                        <select name="class" required>
+                            <option value="" disabled selected>Choose Class</option>
+                            <option value="9">Class 9</option>
+                            <option value="10">Class 10</option>
+                            <option value="11">Class 11</option>
+                            <option value="12">Class 12</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" name="_to" value="sambudahal0@gmail.com">
+                <button type="submit" class="btn-submit">Submit Admission (Varnu Hola)</button>
+            </form>
         </div>
     </section>
 
+    <div class="payment-box">
+        <div class="qr-card">
+            <h3 style="margin-bottom: 5px;">Scan to Pay via eSewa</h3>
+            <p style="font-size: 0.8rem; opacity: 0.6;">Academic & Web Services Fee</p>
+            <img src="esewa.png" alt="eSewa QR Code" class="qr-img">
+            <div style="color: #22c55e; font-weight: 900; font-size: 1.2rem;">Tara Devi Dahal</div>
+            <div style="font-weight: bold; letter-spacing: 1px;">9801697735</div>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Sambad Dahal Solutions. All Rights Reserved.</p>
+        <p>&copy; 2026 Sambad Dahal | SD Learning Center</p>
         <p style="font-size: 0.8rem; margin-top: 10px;">Dharan 17, Sunsari, Nepal</p>
     </footer>
 
