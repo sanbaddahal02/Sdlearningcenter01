@@ -3,242 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sambad Dahal | CEO & Professional Developer</title>
+    <title>SD Learning Center | CEO Sambad Dahal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #3b82f6; --accent: #8b5cf6; --bg: #020617;
-            --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.08);
-        }
-        * { box-sizing: border-box; }
-        body { 
-            margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: var(--bg); color: white; overflow-x: hidden;
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0b0f1a, #111827);
+            color: white;
+            scroll-behavior: smooth;
         }
 
-        /* Animated Background */
-        .glow-sphere {
-            position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
-            border-radius: 50%; z-index: -1; filter: blur(60px); animation: float 20s infinite alternate;
-        }
-        @keyframes float { from { transform: translate(-10%, -10%); } to { transform: translate(30%, 30%); } }
-
-        /* Navigation */
+        /* NAVBAR */
         nav {
-            position: fixed; width: 100%; padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid var(--border);
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .container { padding: 140px 8% 60px; max-width: 1400px; margin: auto; }
-
-        /* 3D Glass Cards */
-        .card {
-            background: var(--glass); border: 1px solid var(--border); border-radius: 30px;
-            padding: 40px; backdrop-filter: blur(10px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-            transition: 0.4s ease; position: relative; overflow: hidden;
+        /* HERO SECTION */
+        .hero {
+            padding: 160px 8% 60px;
+            text-align: center;
         }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .profile {
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            border: 4px solid #3b82f6;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 10px 0;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: #9ca3af;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.6;
+        }
 
-        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin: 20px 0; }
-        .gradient-text { background: linear-gradient(90deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* GAME HUB GRID */
+        .section-title { text-align: center; margin: 40px 0 20px; font-size: 28px; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            padding: 0 8% 60px;
+        }
 
-        .badge { background: rgba(59,130,246,0.1); color: var(--primary); padding: 6px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; border: 1px solid rgba(59,130,246,0.2); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            text-align: center;
+            transition: 0.3s;
+        }
+        .glass-card:hover { transform: translateY(-10px); border-color: #3b82f6; }
 
-        /* GameHub Engine */
-        .game-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; margin-top: 50px; }
-        #board-container { 
-            width: 320px; height: 320px; margin: 20px auto; position: relative;
-            background: #0f172a; border: 8px solid #1e293b; border-radius: 15px; 
+        /* SNAKE & LADDERS BOARD */
+        #snl-board {
+            width: 250px; height: 250px;
+            margin: 20px auto;
             display: grid; grid-template-columns: repeat(10, 1fr);
+            border: 4px solid #1e293b; position: relative;
+            background: #0f172a;
         }
-        .square { border: 0.1px solid rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; font-size: 8px; color: #475569; }
-        #token { 
-            width: 20px; height: 20px; background: radial-gradient(circle, #ef4444, #991b1b); 
-            border-radius: 50%; position: absolute; z-index: 10;
-            transition: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 0 15px #ef4444;
-        }
-
-        /* Forms & Buttons */
-        .btn {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white; border: none; padding: 16px 35px; border-radius: 15px;
-            font-weight: 700; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-        }
-        .btn:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5); }
-
-        input, select { 
-            width: 100%; padding: 15px; background: rgba(255,255,255,0.03); 
-            border: 1px solid var(--border); border-radius: 12px; color: white; margin-bottom: 20px;
+        .square { border: 0.1px solid rgba(255,255,255,0.05); font-size: 7px; display: flex; align-items: center; justify-content: center; color: #4b5563; }
+        #player-token {
+            width: 15px; height: 15px; background: radial-gradient(circle, #ef4444, #b91c1c);
+            border-radius: 50%; position: absolute; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 10px #ef4444; z-index: 5;
         }
 
-        .popup { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .popup.active { display: flex; }
+        /* PRICING */
+        .price-tag { font-size: 24px; color: #22c55e; font-weight: bold; margin: 15px 0; }
 
-        /* Payment UI */
-        .qr-box { background: white; padding: 15px; border-radius: 20px; display: inline-block; margin: 20px 0; }
-        .qr-box img { width: 180px; height: 180px; display: block; border-radius: 10px; }
+        /* BUTTONS */
+        .mainBtn {
+            background: linear-gradient(135deg, #3b82f6, #9333ea);
+            border: none; padding: 14px 30px; border-radius: 12px;
+            color: white; font-weight: bold; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: 0.3s;
+        }
+        .mainBtn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
+
+        /* ADMISSION POPUP */
+        .popup {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            display: none; justify-content: center; align-items: center; z-index: 2000;
+        }
+        .formBox {
+            background: #161e2d; padding: 40px; border-radius: 24px;
+            width: 380px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: popIn 0.4s ease;
+        }
+        @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        input, select {
+            width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px;
+            border: none; background: #0f172a; color: white; box-sizing: border-box;
+        }
+
+        /* ADMIN PANEL */
+        .admin-section { padding: 60px 8%; text-align: center; background: rgba(0,0,0,0.2); }
+        .data-card { background: #1f2937; padding: 15px; border-radius: 10px; margin: 10px auto; max-width: 500px; text-align: left; border-left: 4px solid #3b82f6; }
+
+        /* WHATSAPP */
+        .whatsapp {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #25D366; width: 60px; height: 60px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 30px; color: white; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
 
-<div class="glow-sphere"></div>
-
 <nav>
-    <div style="font-weight:800; font-size:1.5rem;">SD<span style="color:var(--primary)">LEARNING</span></div>
-    <div style="display:flex; gap:30px; font-size:0.9rem; font-weight:600;">
-        <a href="#about" style="color:white; text-decoration:none;">About</a>
-        <a href="#gamehub" style="color:white; text-decoration:none;">GameHub</a>
-        <a href="#payment" style="color:var(--primary); text-decoration:none;">Pricing</a>
-    </div>
+    <div><b style="color:#3b82f6">SD</b> Learning Center</div>
+    <div style="font-size: 14px; opacity: 0.8;">CEO Sambad Dahal</div>
 </nav>
 
-<main class="container">
-    <section class="card hero-text" id="about">
-        <span class="badge">CEO & Founder</span>
-        <h1>Building the Future of <br><span class="gradient-text">Skill-Based Education</span></h1>
-        <p style="opacity:0.7; font-size:1.1rem; max-width:700px;">
-            I am <b>Sambad Dahal</b>, a BBA student at Mahendra Multiple Campus. 
-            I lead a team of expert educators specialized in Accounts and Economics, while I personally drive the Computer Science and Professional Programming wings.
-        </p>
-        <div style="margin-top:30px; display:flex; gap:15px; flex-wrap:wrap;">
-            <span class="badge">Python</span> <span class="badge">C++</span> <span class="badge">Java</span> <span class="badge">React</span>
-        </div>
-    </section>
+<header class="hero">
+    <img src="sambad.jpg" class="profile" alt="Sambad Dahal">
+    <h1>Sambad Dahal</h1>
+    <p>
+        BBA Student at <b>Mahendra Multiple Campus</b> | CEO of SD Learning Center. <br>
+        Expert in <b>Computer Science & Programming</b> (C, C++, Java, JS, Python). <br>
+        Our team provides specialist tuition for <b>Accounts & Economics</b> (Class 9-12).
+    </p>
+    <button class="mainBtn" style="margin-top: 25px;" onclick="togglePopup(true)">
+        🎓 Student Admission
+    </button>
+</header>
 
-    <div class="game-section">
-        <div class="card" id="gamehub" style="text-align:center;">
-            <h2 style="margin-top:0;">🎮 Snake & Ladders</h2>
-            <p style="font-size:0.8rem; opacity:0.6;">Reach Square 100 to Win!</p>
-            <div id="board-container">
-                <div id="token"></div>
-                </div>
-            <div style="display:flex; justify-content:center; align-items:center; gap:20px;">
-                <div id="dice" style="font-size:3rem;">🎲</div>
-                <button class="btn" onclick="roll()">Roll Dice</button>
-            </div>
-            <p style="margin-top:15px;">Square: <span id="pos" style="color:var(--primary); font-weight:800;">1</span></p>
-        </div>
+<h2 class="section-title">Gaming Hub & Fees</h2>
 
-        <div class="card" id="payment">
-            <h2 style="margin-top:0;">💳 Universal Course Fees</h2>
-            <p style="opacity:0.7; font-size:0.9rem;">Applicable for All Courses (Accounts, Economics, Coding, CS)</p>
-            
-            <div style="margin:25px 0; border-left:3px solid var(--primary); padding-left:20px;">
-                <div style="margin-bottom:15px;">
-                    <span style="display:block; font-size:0.8rem; opacity:0.5;">ADMISSION + 1ST MONTH</span>
-                    <span style="font-size:1.5rem; font-weight:800;">Rs. 500</span>
-                </div>
-                <div>
-                    <span style="display:block; font-size:0.8rem; opacity:0.5;">REGULAR MONTHLY FEE</span>
-                    <span style="font-size:1.5rem; font-weight:800;">Rs. 1000</span>
-                </div>
-            </div>
-
-            <div style="text-align:center;">
-                <div class="qr-box">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SDLearningCenter" alt="Payment QR">
-                </div>
-                <p style="font-size:0.8rem; font-weight:600;">Scan to Pay via eSewa / Khalti</p>
-            </div>
-            
-            <button class="btn" style="width:100%; margin-top:15px;" onclick="openForm()">Enroll Now</button>
+<div class="grid-container">
+    <div class="glass-card">
+        <h3>Snake & Ladders</h3>
+        <div id="snl-board">
+            <div id="player-token"></div>
         </div>
+        <div id="dice-display" style="font-size: 2rem; margin-bottom: 10px;">🎲</div>
+        <button class="mainBtn" onclick="rollDice()">Roll Dice</button>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.6;">Current Square: <span id="pos-val">1</span></p>
     </div>
 
-    <section class="card" style="margin-top:50px; text-align:center;">
-        <h3>Admin Portal</h3>
-        <input type="password" id="pass" placeholder="Enter Admin Password" style="max-width:300px; text-align:center;"> <br>
-        <button class="btn" onclick="unlock()">Access Logs</button>
-        <div id="logs" style="display:none; margin-top:30px; text-align:left; border-top:1px solid var(--border); padding-top:20px;"></div>
-    </section>
-</main>
-
-<div class="popup" id="formPopup">
-    <div class="card" style="width:90%; max-width:450px;">
-        <h2 style="margin-top:0;">Student Enrollment</h2>
-        <form id="enrollForm">
-            <input type="text" id="n" placeholder="Full Name" required>
-            <input type="text" id="a" placeholder="Address" required>
-            <select id="s">
-                <option value="Coding">Professional Coding (C, C++, Java, Python)</option>
-                <option value="Computer">Computer Science (+2)</option>
-                <option value="Accounts">Accounts (Specialist Team)</option>
-                <option value="Economics">Economics (Specialist Team)</option>
-            </select>
-            <input type="tel" id="p" placeholder="Phone Number" required>
-            <button type="submit" class="btn" style="width:100%">Submit Details</button>
-        </form>
-        <button onclick="closeForm()" style="background:none; border:none; color:#ef4444; cursor:pointer; margin-top:15px; width:100%; font-weight:bold;">Cancel</button>
+    <div class="glass-card">
+        <h3>Course Fees</h3>
+        <p style="font-size: 14px; opacity: 0.7;">Universal pricing for all subjects</p>
+        <div class="price-tag">1st Month: Rs. 500</div>
+        <div class="price-tag" style="color: #3b82f6;">Regular: Rs. 1000</div>
+        <div style="background: white; padding: 10px; display: inline-block; border-radius: 10px; margin-top: 10px;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=SDLearningCenterPayment" alt="QR Code" style="display: block;">
+        </div>
+        <p style="font-size: 12px; margin-top: 5px; color: #9ca3af;">Scan to pay via eSewa/Khalti</p>
     </div>
 </div>
 
+<div class="popup" id="formPopup">
+    <div class="formBox">
+        <h2 style="margin-top:0">Admission Form</h2>
+        <form id="enrollForm">
+            <input type="text" id="sName" placeholder="Student Name" required>
+            <input type="text" id="sAddress" placeholder="Address" required>
+            <select id="sCourse">
+                <option value="Computer Science">Computer Science (+2)</option>
+                <option value="Programming">Programming (C, C++, Java, Python)</option>
+                <option value="Accounts">Accounts (Specialist Team)</option>
+                <option value="Economics">Economics (Specialist Team)</option>
+            </select>
+            <input type="tel" id="sPhone" placeholder="Phone Number" required>
+            <button class="mainBtn" type="submit" style="width: 100%; padding: 12px;">Submit Admission</button>
+        </form>
+        <button onclick="togglePopup(false)" style="background:none; border:none; color:#ef4444; margin-top:15px; cursor:pointer;">Close</button>
+    </div>
+</div>
+
+<section class="admin-section">
+    <h2>Admin Dashboard</h2>
+    <input type="password" id="adminPass" placeholder="Enter Password" style="width: 200px;">
+    <button class="mainBtn" onclick="checkAdmin()" style="padding: 10px 20px;">View Data</button>
+    <div id="adminData" style="margin-top: 20px;"></div>
+</section>
+
+<a href="https://wa.me/9801697735" class="whatsapp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
 <script>
-    // 1. SNAKE & LADDERS ENGINE
-    let current = 1;
-    const board = document.getElementById('board-container');
-    const haz = { 99: 1, 65: 40, 25: 5, 3: 22, 50: 75, 8: 30 }; // Snakes and Ladders
+    // SNAKE GAME LOGIC
+    let currentPos = 1;
+    const hazards = { 99: 1, 65: 40, 25: 5, 3: 22, 50: 75, 8: 30 };
+    const board = document.getElementById('snl-board');
 
     for(let i=100; i>=1; i--) {
-        const div = document.createElement('div');
-        div.className = 'square'; div.id = 'sq'+i; div.innerText = i;
-        board.appendChild(div);
+        const sq = document.createElement('div');
+        sq.className = 'square'; sq.id = 'sq' + i; sq.innerText = i;
+        board.appendChild(sq);
     }
 
-    function move() {
-        const target = document.getElementById('sq'+current);
-        const token = document.getElementById('token');
-        token.style.top = target.offsetTop + (target.offsetHeight/4) + "px";
-        token.style.left = target.offsetLeft + (target.offsetWidth/4) + "px";
-        document.getElementById('pos').innerText = current;
+    function updateToken() {
+        const target = document.getElementById('sq' + currentPos);
+        const token = document.getElementById('player-token');
+        token.style.top = target.offsetTop + "px";
+        token.style.left = target.offsetLeft + "px";
+        document.getElementById('pos-val').innerText = currentPos;
     }
 
-    function roll() {
-        const r = Math.floor(Math.random() * 6) + 1;
-        document.getElementById('dice').innerText = ['⚀','⚁','⚂','⚃','⚄','⚅'][r-1];
-        if(current + r <= 100) current += r;
+    function rollDice() {
+        const roll = Math.floor(Math.random() * 6) + 1;
+        document.getElementById('dice-display').innerText = ['⚀','⚁','⚂','⚃','⚄','⚅'][roll-1];
+        if(currentPos + roll <= 100) currentPos += roll;
         
-        if(haz[current]) {
+        if(hazards[currentPos]) {
             setTimeout(() => {
-                alert(haz[current] > current ? "🪜 Ladder Climb!" : "🐍 Snake Bite!");
-                current = haz[current];
-                move();
-            }, 600);
+                alert(hazards[currentPos] > currentPos ? "🪜 Ladder Climb!" : "🐍 Snake Bite!");
+                currentPos = hazards[currentPos];
+                updateToken();
+            }, 500);
         }
-        move();
-        if(current === 100) alert("Victory! You are the champion of SD Learning.");
+        updateToken();
+        if(currentPos === 100) alert("Victory! Sambad Dahal welcomes you.");
     }
-    window.onload = move;
+    window.onload = updateToken;
 
-    // 2. FORM & ADMIN LOGIC
-    function openForm() { document.getElementById('formPopup').classList.add('active'); }
-    function closeForm() { document.getElementById('formPopup').classList.remove('active'); }
+    // FORM & ADMIN LOGIC
+    function togglePopup(show) { document.getElementById('formPopup').style.display = show ? 'flex' : 'none'; }
 
-    document.getElementById('enrollForm').onsubmit = (e) => {
+    document.getElementById('enrollForm').onsubmit = function(e) {
         e.preventDefault();
-        const student = {
-            name: document.getElementById('n').value,
-            course: document.getElementById('s').value,
-            phone: document.getElementById('p').value,
-            date: new Date().toLocaleDateString()
+        const data = {
+            n: document.getElementById('sName').value,
+            a: document.getElementById('sAddress').value,
+            c: document.getElementById('sCourse').value,
+            p: document.getElementById('sPhone').value
         };
-        const list = JSON.parse(localStorage.getItem('admissions') || '[]');
-        list.push(student);
-        localStorage.setItem('admissions', JSON.stringify(list));
-        alert("Enrolled Successfully! Sambad will contact you.");
-        closeForm();
+        const list = JSON.parse(localStorage.getItem('sd_students') || '[]');
+        list.push(data);
+        localStorage.setItem('sd_students', JSON.stringify(list));
+        alert("Success! Admission Submitted.");
+        togglePopup(false);
     };
 
-    function unlock() {
-        if(document.getElementById('pass').value === "active001") {
-            const list = JSON.parse(localStorage.getItem('admissions') || '[]');
-            const div = document.getElementById('logs');
-            div.style.display = "block";
-            div.innerHTML = list.map(s => `<div style="padding:10px; border-bottom:1px solid #222;"><b>${s.name}</b> - ${s.course} (${s.phone})</div>`).join('');
-        } else { alert("Unauthorized!"); }
+    function checkAdmin() {
+        if(document.getElementById('adminPass').value === "active001") {
+            const list = JSON.parse(localStorage.getItem('sd_students') || '[]');
+            document.getElementById('adminData').innerHTML = list.map(s => 
+                `<div class="data-card"><b>${s.n}</b> - ${s.c}<br><small>${s.a} | ${s.p}</small></div>`
+            ).join('');
+        } else { alert("Wrong Password!"); }
     }
 </script>
+
 </body>
 </html>
-
-
