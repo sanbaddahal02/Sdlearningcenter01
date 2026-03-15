@@ -1,296 +1,291 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sambad Dahal | SD Learning Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root { 
+            --bg: #0b0f1a; 
+            --card: #161e2d; 
+            --primary: #3b82f6; 
+            --accent: #a855f7;
+            --success: #25D366; 
+        }
+        
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Navbar Styling */
+        nav { 
+            background: rgba(17, 24, 39, 0.8); 
+            backdrop-filter: blur(10px);
+            padding: 15px 8%; 
+            display: flex; 
+            justify-content: space-between; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            z-index: 1000; 
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
 
-<title>Sambad Dahal | SD Learning Center</title>
+        /* Hero Section (Intro) */
+        .hero {
+            padding: 150px 8% 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e293b 0%, #0b0f1a 100%);
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        .profile-img { 
+            width: 180px; height: 180px; 
+            border-radius: 50%; 
+            border: 5px solid var(--primary); 
+            object-fit: cover; 
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            margin-bottom: 20px;
+        }
 
-<style>
+        .hero h1 { font-size: 3rem; margin: 10px 0; background: linear-gradient(to right, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.2rem; color: #94a3b8; max-width: 600px; line-height: 1.6; }
 
-body{
-margin:0;
-font-family:Arial;
-background:#0b0f1a;
-color:white;
-}
+        .badge { 
+            background: rgba(59, 130, 246, 0.2); 
+            color: var(--primary); 
+            padding: 5px 15px; 
+            border-radius: 20px; 
+            font-size: 0.9rem; 
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
 
-nav{
-background:#111827;
-padding:15px 8%;
-display:flex;
-justify-content:space-between;
-position:fixed;
-width:100%;
-top:0;
-}
+        /* Skills Section */
+        .skills-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-top: 20px; }
+        .skill-tag { background: var(--card); border: 1px solid #1e293b; padding: 10px 20px; border-radius: 10px; font-weight: bold; }
 
-section{
-padding:90px 8%;
-}
+        /* General Section Styling */
+        section { padding: 80px 8% 40px; }
+        h2 { text-align: center; font-size: 2.2rem; margin-bottom: 50px; }
 
-h2{
-text-align:center;
-margin-bottom:40px;
-}
+        /* Grid & Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { 
+            background: var(--card); 
+            padding: 40px; 
+            border-radius: 20px; 
+            text-align: center; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            transition: 0.4s; 
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .price-tag { 
+            font-size: 1.5rem; 
+            color: var(--success); 
+            margin: 20px 0; 
+            background: rgba(37, 211, 102, 0.1); 
+            padding: 10px; 
+            border-radius: 10px; 
+        }
 
-.games-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-}
+        /* QR Image */
+        .qr-img { width: 200px; border-radius: 15px; border: 8px solid white; background: white; margin: 15px 0; }
 
-.game-card{
-background:#111827;
-padding:30px;
-border-radius:15px;
-text-align:center;
-cursor:pointer;
-transition:0.3s;
-}
+        /* Game Hub */
+        .game-hub { display: none; margin-top: 50px; background: #000; padding: 40px; border-radius: 20px; border: 2px solid var(--primary); }
+        canvas { background: #111; display: block; margin: 20px auto; max-width: 100%; border-radius: 10px; }
 
-.game-card:hover{
-transform:translateY(-8px);
-}
+        /* Floating WhatsApp */
+        .whatsapp { 
+            position: fixed; bottom: 30px; right: 30px; 
+            background: var(--success); width: 65px; height: 65px; 
+            border-radius: 50%; display: flex; align-items: center; 
+            justify-content: center; font-size: 35px; color: white; 
+            text-decoration: none; box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+            z-index: 2000; transition: 0.3s;
+        }
+        .whatsapp:hover { transform: scale(1.1) rotate(10deg); }
 
-.game-interface{
-display:none;
-text-align:center;
-margin-top:40px;
-}
+        button { 
+            background: linear-gradient(135deg, var(--primary), var(--accent)); 
+            color: white; border: none; padding: 12px 30px; 
+            border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1rem;
+        }
 
-canvas{
-background:black;
-border-radius:10px;
-}
+        .ttt-grid { display: grid; grid-template-columns: repeat(3, 80px); gap: 10px; justify-content: center; margin: 20px 0; }
+        .cell { width: 80px; height: 80px; background: #1e293b; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; }
 
-button{
-padding:10px 20px;
-border:none;
-border-radius:10px;
-background:#3b82f6;
-color:white;
-cursor:pointer;
-}
-
-input{
-padding:10px;
-border-radius:8px;
-border:none;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px;
-color:white;
-text-decoration:none;
-box-shadow:0 6px 15px rgba(0,0,0,0.3);
-}
-
-</style>
-
+    </style>
 </head>
 <body>
 
 <nav>
-<div><b>Sambad Dahal</b></div>
-<div>SD Learning Center</div>
+    <div><b style="color: var(--primary);">SD</b> Learning Center</div>
+    <div>Sambad Dahal</div>
 </nav>
 
+<header class="hero">
+    <img src="sambad.jpg" alt="Sambad Dahal" class="profile-img">
+    <div class="badge">CEO & Founder of SD Learning Center</div>
+    <h1>Hi, I'm Sambad Dahal</h1>
+    <p>
+        A passionate <b>Part-Time Programmer</b> & Entrepreneur. <br>
+        Currently pursuing <b>BBA (1st Semester)</b> at <b>Mahendra Multiple Campus, Dharan</b>. 
+        I bridge the gap between business management and digital innovation.
+    </p>
+    
+    <div class="skills-grid">
+        <div class="skill-tag"><i class="fab fa-html5"></i> Web Development</div>
+        <div class="skill-tag"><i class="fas fa-chart-line"></i> Business Analytics</div>
+        <div class="skill-tag"><i class="fas fa-code"></i> Python Coding</div>
+        <div class="skill-tag"><i class="fas fa-brain"></i> AI Prompting</div>
+    </div>
+</header>
 
-<section>
+<section id="education">
+    <h2>Quality Education & Services</h2>
+    <div class="grid">
+        <div class="card">
+            <i class="fas fa-university fa-3x" style="color: var(--primary)"></i>
+            <h3>Academic Background</h3>
+            <p>Studying BBA at Mahendra Multiple Campus, Dharan. Merging Management skills with Technology.</p>
+        </div>
 
-<h2>Play Games Created By Me</h2>
+        <div class="card">
+            <i class="fas fa-laptop-code fa-3x" style="color: var(--accent)"></i>
+            <h3>SD Learning Courses</h3>
+            <p>From Basic IT to Advanced Coding. Join our community for a better future.</p>
+            <div class="price-tag">Rs. 500 <small>(1st Month)</small></div>
+            <p>Rs. 1000 from next month onwards.</p>
+            <a href="https://forms.google.com" target="_blank"><button>Enroll in BBA/IT Batch</button></a>
+        </div>
 
-<div class="games-grid">
-
-<div class="game-card" onclick="openGame('runner')">
-<h3>Runner Game</h3>
-<p>Jump the obstacle</p>
-</div>
-
-<div class="game-card" onclick="openGame('clicker')">
-<h3>Click Speed Game</h3>
-<p>Click fast and get score</p>
-</div>
-
-<div class="game-card" onclick="openGame('guess')">
-<h3>Guess Number</h3>
-<p>Guess the secret number</p>
-</div>
-
-</div>
-
-
-
-<div id="runner" class="game-interface">
-
-<h3>Runner Game</h3>
-
-<canvas id="game" width="500" height="250"></canvas>
-
-<p>Score: <span id="score">0</span></p>
-
-<p>Press SPACE to jump</p>
-
-</div>
-
-
-
-<div id="clicker" class="game-interface">
-
-<h3>Click Speed Game</h3>
-
-<p>Score: <span id="clickScore">0</span></p>
-
-<button onclick="clickGame()">Click Me</button>
-
-</div>
-
-
-
-<div id="guess" class="game-interface">
-
-<h3>Guess The Number (1-10)</h3>
-
-<input id="guessInput">
-
-<button onclick="guessGame()">Guess</button>
-
-<p id="guessResult"></p>
-
-</div>
-
+        <div class="card">
+            <img src="esewa.png" alt="Payment QR" class="qr-img">
+            <h3>Fast Admission</h3>
+            <p>Scan the QR to pay your admission fee instantly via eSewa.</p>
+        </div>
+    </div>
 </section>
 
+<section id="games">
+    <h2>Entertainment Zone</h2>
+    <p style="text-align: center; color: #94a3b8;">Take a break from study! Play games created by Sambad.</p>
+    <div class="grid" id="game-menu">
+        <div class="card" onclick="openGame('runner')">
+            <h3><i class="fas fa-running"></i> Runner Game</h3>
+            <button>Play Now</button>
+        </div>
+        <div class="card" onclick="openGame('racing')">
+            <h3><i class="fas fa-car"></i> Car Racing</h3>
+            <button>Play Now</button>
+        </div>
+        <div class="card" onclick="openGame('ttt')">
+            <h3><i class="fas fa-grid"></i> Tic Tac Toe</h3>
+            <button>Play Now</button>
+        </div>
+    </div>
 
+    <div id="game-container" class="game-hub">
+        <button onclick="exitGame()" style="background: #ef4444; margin-bottom: 20px;">Exit Hub</button>
+        <div id="game-render"></div>
+    </div>
+</section>
 
 <a href="https://wa.me/9801697735" class="whatsapp" target="_blank">
-<i class="fab fa-whatsapp"></i>
+    <i class="fab fa-whatsapp"></i>
 </a>
 
-
-
 <script>
+    let loop;
+    function openGame(type) {
+        document.getElementById('game-menu').style.display = 'none';
+        const hub = document.getElementById('game-container');
+        const render = document.getElementById('game-render');
+        hub.style.display = 'block';
+        render.innerHTML = '';
 
-function openGame(id){
+        if(type === 'runner') {
+            render.innerHTML = '<h3>Subway Style Runner</h3><canvas id="c" width="500" height="200"></canvas><p>SPACE to Jump</p>';
+            startRunner();
+        } else if(type === 'racing') {
+            render.innerHTML = '<h3>Highway Racer</h3><canvas id="c" width="300" height="400"></canvas><p>Use Arrows to Move</p>';
+            startRacing();
+        } else if(type === 'ttt') {
+            render.innerHTML = '<h3>Vs AI Bot</h3><div class="ttt-grid" id="t"></div>';
+            startTTT();
+        }
+    }
 
-document.querySelectorAll(".game-interface").forEach(g=>{
-g.style.display="none"
-})
+    function exitGame() {
+        cancelAnimationFrame(loop);
+        document.getElementById('game-container').style.display = 'none';
+        document.getElementById('game-menu').style.display = 'grid';
+    }
 
-document.getElementById(id).style.display="block"
+    // --- Games Logic (Runner) ---
+    function startRunner() {
+        const c = document.getElementById('c'), x = c.getContext('2d');
+        let p = {y:150, dy:0, j:false}, o = {x:500};
+        window.onkeydown = (e) => { if(e.code === 'Space' && !p.j) { p.dy = -10; p.j = true; } };
+        function animate() {
+            x.clearRect(0,0,500,200);
+            p.y += p.dy; if(p.y < 150) p.dy += 0.5; else { p.y = 150; p.j = false; }
+            o.x -= 7; if(o.x < -20) o.x = 500;
+            x.fillStyle = "#3b82f6"; x.fillRect(50, p.y, 30, 30);
+            x.fillStyle = "red"; x.fillRect(o.x, 150, 20, 30);
+            if(o.x < 80 && o.x > 20 && p.y > 120) { alert("Game Over!"); return exitGame(); }
+            loop = requestAnimationFrame(animate);
+        }
+        animate();
+    }
 
-}
+    // --- Games Logic (Racing) ---
+    function startRacing() {
+        const c = document.getElementById('c'), x = c.getContext('2d');
+        let cx = 135, ex = 135, ey = -100;
+        window.onkeydown = (e) => { if(e.key==='ArrowLeft'&&cx>60) cx-=40; if(e.key==='ArrowRight'&&cx<210) cx+=40; };
+        function animate() {
+            x.clearRect(0,0,300,400); x.fillStyle="#222"; x.fillRect(50,0,200,400);
+            ey += 6; if(ey > 400) { ey = -100; ex = [55, 135, 215][Math.floor(Math.random()*3)]; }
+            x.fillStyle="blue"; x.fillRect(cx, 320, 30, 50);
+            x.fillStyle="red"; x.fillRect(ex, ey, 30, 50);
+            if(ey > 280 && Math.abs(cx-ex) < 30) { alert("Crashed!"); return exitGame(); }
+            loop = requestAnimationFrame(animate);
+        }
+        animate();
+    }
 
-
-
-const canvas=document.getElementById("game")
-const ctx=canvas.getContext("2d")
-
-let player={x:50,y:200,w:30,h:30}
-let obstacle={x:500,y:200,w:30,h:30}
-
-let score=0
-
-document.addEventListener("keydown",function(e){
-
-if(e.code==="Space"){
-
-player.y=150
-
-setTimeout(()=>{
-player.y=200
-},300)
-
-}
-
-})
-
-function runnerGame(){
-
-ctx.clearRect(0,0,500,250)
-
-ctx.fillStyle="cyan"
-ctx.fillRect(player.x,player.y,player.w,player.h)
-
-ctx.fillStyle="red"
-ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
-
-obstacle.x-=5
-
-if(obstacle.x<0){
-
-obstacle.x=500
-score++
-document.getElementById("score").innerText=score
-
-}
-
-if(player.x<obstacle.x+obstacle.w &&
-player.x+player.w>obstacle.x &&
-player.y<obstacle.y+obstacle.h &&
-player.y+player.h>obstacle.y){
-
-alert("Game Over Score: "+score)
-
-score=0
-obstacle.x=500
-
-}
-
-requestAnimationFrame(runnerGame)
-
-}
-
-runnerGame()
-
-
-
-let clickScore=0
-
-function clickGame(){
-
-clickScore++
-
-document.getElementById("clickScore").innerText=clickScore
-
-}
-
-
-
-let secret=Math.floor(Math.random()*10)+1
-
-function guessGame(){
-
-let value=document.getElementById("guessInput").value
-
-if(value==secret){
-
-document.getElementById("guessResult").innerText="Correct!"
-
-}else{
-
-document.getElementById("guessResult").innerText="Try Again"
-
-}
-
-}
-
+    // --- Games Logic (Tic Tac Toe) ---
+    function startTTT() {
+        const t = document.getElementById('t'); let b = Array(9).fill("");
+        function draw() {
+            t.innerHTML = ''; b.forEach((v, i) => {
+                let d = document.createElement('div'); d.className = 'cell'; d.innerText = v;
+                d.onclick = () => { if(!b[i]) { b[i] = "X"; draw(); setTimeout(ai, 400); } };
+                t.appendChild(d);
+            });
+            check();
+        }
+        function ai() { 
+            let e = b.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+            if(e.length>0) { b[e[Math.floor(Math.random()*e.length)]]="O"; draw(); }
+        }
+        function check() {
+            const w = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+            w.forEach(s => { if(b[s[0]] && b[s[0]]===b[s[1]] && b[s[0]]===b[s[2]]) { alert(b[s[0]]+" Wins!"); b=Array(9).fill(""); draw(); } });
+        }
+        draw();
+    }
 </script>
 
 </body>
 </html>
-```
