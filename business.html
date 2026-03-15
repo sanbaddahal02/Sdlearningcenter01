@@ -1,0 +1,107 @@
+// --- LOAD IMAGES FIRST ---
+const playerCarImg = new Image();
+playerCarImg.src = 'car.png'; // Rename this to your actual player car filename
+
+const botCarImg = new Image();
+botCarImg.src = 'bot.png'; // Rename this to your actual bot car filename
+
+const obstacleImg = new Image();
+obstacleImg.src = 'obstacle.png'; // Use for the Runner Game
+
+let loop;
+
+function openGame(type) {
+    document.getElementById('game-menu').style.display = 'none';
+    const hub = document.getElementById('game-container');
+    const render = document.getElementById('game-render');
+    hub.style.display = 'block';
+    render.innerHTML = '';
+
+    if(type === 'runner') {
+        render.innerHTML = '<h3>Subway Style Runner</h3><canvas id="c" width="500" height="200"></canvas><p>SPACE to Jump</p>';
+        startRunner();
+    } else if(type === 'racing') {
+        render.innerHTML = '<h3>Highway Racer</h3><canvas id="c" width="300" height="400"></canvas><p>Use Arrows to Move</p>';
+        startRacing();
+    } else if(type === 'ttt') {
+        render.innerHTML = '<h3>Vs AI Bot</h3><div class="ttt-grid" id="t"></div>';
+        startTTT();
+    }
+}
+
+// --- CAR RACING WITH REAL IMAGES ---
+function startRacing() {
+    const c = document.getElementById('c'), x = c.getContext('2d');
+    let cx = 135, ex = 135, ey = -100;
+    
+    window.onkeydown = (e) => { 
+        if(e.key==='ArrowLeft'&&cx>60) cx-=40; 
+        if(e.key==='ArrowRight'&&cx<210) cx+=40; 
+    };
+
+    function animate() {
+        x.clearRect(0,0,300,400); 
+        
+        // Draw Road
+        x.fillStyle="#222"; 
+        x.fillRect(50,0,200,400);
+        
+        // Draw Lane Lines
+        x.strokeStyle = "white";
+        x.setLineDash([20, 20]);
+        x.beginPath(); x.moveTo(100, 0); x.lineTo(100, 400); x.stroke();
+        x.beginPath(); x.moveTo(200, 0); x.lineTo(200, 400); x.stroke();
+
+        ey += 7; // Speed of Bot
+        if(ey > 400) { 
+            ey = -100; 
+            ex = [55, 135, 215][Math.floor(Math.random()*3)]; 
+        }
+
+        // DRAW REAL CARS
+        // Syntax: x.drawImage(imageVariable, x, y, width, height)
+        x.drawImage(playerCarImg, cx, 320, 40, 70); 
+        x.drawImage(botCarImg, ex, ey, 40, 70);
+
+        // Collision Check
+        if(ey > 250 && ey < 370 && Math.abs(cx-ex) < 35) { 
+            alert("Boom! You crashed!"); 
+            return exitGame(); 
+        }
+        
+        loop = requestAnimationFrame(animate);
+    }
+    animate();
+}
+
+// --- RUNNER GAME WITH REAL IMAGES ---
+function startRunner() {
+    const c = document.getElementById('c'), x = c.getContext('2d');
+    let p = {y:150, dy:0, j:false}, o = {x:500};
+    
+    window.onkeydown = (e) => { if(e.code === 'Space' && !p.j) { p.dy = -12; p.j = true; } };
+
+    function animate() {
+        x.clearRect(0,0,500,200);
+        
+        p.y += p.dy; 
+        if(p.y < 150) p.dy += 0.6; 
+        else { p.y = 150; p.j = false; }
+        
+        o.x -= 8; if(o.x < -40) o.x = 500;
+
+        // Draw Player Car as Runner
+        x.drawImage(playerCarImg, 50, p.y, 50, 40);
+        
+        // Draw Obstacle (You can use an image or a solid block)
+        x.fillStyle = "red";
+        x.fillRect(o.x, 160, 30, 30); 
+
+        if(o.x < 90 && o.x > 20 && p.y > 120) { 
+            alert("Game Over!"); 
+            return exitGame(); 
+        }
+        loop = requestAnimationFrame(animate);
+    }
+    animate();
+}
