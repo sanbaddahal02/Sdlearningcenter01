@@ -12,10 +12,10 @@
 <style>
 
 body{
+margin:0;
+font-family:Arial;
 background:#0b0f1a;
 color:white;
-font-family:Arial;
-margin:0;
 }
 
 nav{
@@ -26,319 +26,202 @@ justify-content:space-between;
 position:fixed;
 width:100%;
 top:0;
-z-index:1000;
 }
 
 section{
 padding:90px 8%;
 }
 
-.hero{
-margin-top:70px;
+h2{
+text-align:center;
+margin-bottom:40px;
+}
+
+.games-grid{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
 }
 
-.hero img{
-width:100%;
-border-radius:20px;
-}
-
-.hero h1{
-font-size:45px;
-}
-
-.btn{
-background:#3b82f6;
-padding:12px 25px;
-border-radius:10px;
-text-decoration:none;
-color:white;
-font-weight:bold;
-}
-
-.skills{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:30px;
-}
-
-.skill-card{
+.game-card{
 background:#111827;
 padding:30px;
 border-radius:15px;
 text-align:center;
+cursor:pointer;
+transition:0.3s;
 }
 
-.skill-card i{
-font-size:35px;
-color:#3b82f6;
+.game-card:hover{
+transform:translateY(-8px);
 }
 
-.fee-card{
-background:#111827;
-padding:40px;
-border-radius:20px;
-max-width:500px;
-margin:auto;
-}
-
-form{
-background:#111827;
-padding:40px;
-border-radius:20px;
-max-width:700px;
-margin:auto;
-}
-
-input,select{
-width:100%;
-padding:12px;
-margin-top:8px;
-margin-bottom:20px;
-border-radius:10px;
-border:none;
-}
-
-button{
-background:#3b82f6;
-padding:15px;
-border:none;
-border-radius:10px;
-color:white;
-font-weight:bold;
-width:100%;
+.game-interface{
+display:none;
+text-align:center;
+margin-top:40px;
 }
 
 canvas{
 background:black;
-border-radius:15px;
-margin-top:20px;
+border-radius:10px;
 }
 
-footer{
-text-align:center;
-padding:40px;
-background:#111827;
-}
-
-.whatsapp-float{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#25D366;
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#3b82f6;
 color:white;
+cursor:pointer;
+}
+
+input{
+padding:10px;
+border-radius:8px;
+border:none;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
 width:60px;
 height:60px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:32px;
-box-shadow:0 8px 20px rgba(0,0,0,0.4);
-z-index:1000;
+font-size:30px;
+color:white;
 text-decoration:none;
-transition:0.3s;
-}
-
-.whatsapp-float:hover{
-transform:scale(1.1);
-background:#20b954;
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
 }
 
 </style>
-</head>
 
+</head>
 <body>
 
 <nav>
-<div><b>SAMBAD DAHAL</b></div>
-<div>📞 9801697735</div>
+<div><b>Sambad Dahal</b></div>
+<div>SD Learning Center</div>
 </nav>
 
-<section class="hero">
-
-<div>
-<h1>Sambad Dahal</h1>
-
-<p>CEO of SD Learning Center and passionate programmer helping students from Class 9-12.</p>
-
-<p>Focus subjects: Accounts and Economics with exam preparation and past paper practice.</p>
-
-<a href="#admission" class="btn">Join Now</a>
-
-</div>
-
-<div>
-<img src="sambad.jpg">
-</div>
-
-</section>
 
 <section>
 
-<h2 style="text-align:center">My Skills</h2>
+<h2>Play Games Created By Me</h2>
 
-<div class="skills">
+<div class="games-grid">
 
-<div class="skill-card">
-<i class="fas fa-code"></i>
-<h3>Programmer</h3>
-<p>HTML CSS JavaScript</p>
+<div class="game-card" onclick="openGame('runner')">
+<h3>Runner Game</h3>
+<p>Jump the obstacle</p>
 </div>
 
-<div class="skill-card">
-<i class="fas fa-user-tie"></i>
-<h3>CEO</h3>
-<p>Founder of SD Learning Center</p>
+<div class="game-card" onclick="openGame('clicker')">
+<h3>Click Speed Game</h3>
+<p>Click fast and get score</p>
 </div>
 
-<div class="skill-card">
-<i class="fas fa-gamepad"></i>
-<h3>Game Creator</h3>
-<p>Building simple web games</p>
+<div class="game-card" onclick="openGame('guess')">
+<h3>Guess Number</h3>
+<p>Guess the secret number</p>
 </div>
 
 </div>
 
-</section>
 
-<section>
 
-<h2 style="text-align:center">Course Fees</h2>
+<div id="runner" class="game-interface">
 
-<div class="fee-card">
+<h3>Runner Game</h3>
 
-<p><b>Class 9-12 Coaching</b></p>
-
-<p>First Month (Fresher): <b>Rs 500</b></p>
-
-<p>From Second Month: <b>Rs 1000</b></p>
-
-<p>Classes: Zoom / Google Classroom</p>
-
-<p>Focus: +2 Accounts & Economics</p>
-
-<ul>
-<li>Weekly Tests</li>
-<li>Past Paper Practice</li>
-<li>Exam Preparation</li>
-</ul>
-
-</div>
-
-</section>
-
-<section id="admission">
-
-<h2 style="text-align:center">Student Admission</h2>
-
-<form action="https://formspree.io/f/xreylnja" method="POST">
-
-<label>Student Name</label>
-<input type="text" name="name" required>
-
-<label>Address</label>
-<input type="text" name="address" required>
-
-<label>Age</label>
-<input type="number" name="age">
-
-<label>Phone</label>
-<input type="tel" name="phone">
-
-<label>School</label>
-<input type="text" name="school">
-
-<label>Class</label>
-<select name="class">
-<option>9</option>
-<option>10</option>
-<option>11</option>
-<option>12</option>
-</select>
-
-<label>Class Mode</label>
-<select name="mode">
-<option>Zoom</option>
-<option>Google Classroom</option>
-</select>
-
-<label>Subject</label>
-<select name="subject">
-<option>Accounts</option>
-<option>Economics</option>
-<option>Both</option>
-</select>
-
-<button type="submit">Submit Application</button>
-
-</form>
-
-</section>
-
-<section>
-
-<h2 style="text-align:center">Play My Game</h2>
-
-<center>
-
-<canvas id="game" width="500" height="300"></canvas>
+<canvas id="game" width="500" height="250"></canvas>
 
 <p>Score: <span id="score">0</span></p>
 
-</center>
+<p>Press SPACE to jump</p>
+
+</div>
+
+
+
+<div id="clicker" class="game-interface">
+
+<h3>Click Speed Game</h3>
+
+<p>Score: <span id="clickScore">0</span></p>
+
+<button onclick="clickGame()">Click Me</button>
+
+</div>
+
+
+
+<div id="guess" class="game-interface">
+
+<h3>Guess The Number (1-10)</h3>
+
+<input id="guessInput">
+
+<button onclick="guessGame()">Guess</button>
+
+<p id="guessResult"></p>
+
+</div>
 
 </section>
 
-<section style="text-align:center">
 
-<h2>Pay Fees via eSewa</h2>
 
-<img src="esewa.png" width="200">
-
-<p><b>Tara Devi Dahal</b></p>
-
-<p>9801697735</p>
-
-</section>
-
-<footer>
-<p>© 2026 Sambad Dahal | SD Learning Center</p>
-</footer>
-
-<a href="https://wa.me/9801697735" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/9801697735" class="whatsapp" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
 
+
+
 <script>
+
+function openGame(id){
+
+document.querySelectorAll(".game-interface").forEach(g=>{
+g.style.display="none"
+})
+
+document.getElementById(id).style.display="block"
+
+}
+
+
 
 const canvas=document.getElementById("game")
 const ctx=canvas.getContext("2d")
 
-let player={x:50,y:250,w:30,h:30}
-let obstacle={x:500,y:250,w:30,h:30}
+let player={x:50,y:200,w:30,h:30}
+let obstacle={x:500,y:200,w:30,h:30}
 
 let score=0
 
 document.addEventListener("keydown",function(e){
 
 if(e.code==="Space"){
-player.y=200
+
+player.y=150
 
 setTimeout(()=>{
-player.y=250
+player.y=200
 },300)
 
 }
 
 })
 
-function game(){
+function runnerGame(){
 
-ctx.clearRect(0,0,500,300)
+ctx.clearRect(0,0,500,250)
 
 ctx.fillStyle="cyan"
 ctx.fillRect(player.x,player.y,player.w,player.h)
@@ -349,34 +232,65 @@ ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
 obstacle.x-=5
 
 if(obstacle.x<0){
+
 obstacle.x=500
 score++
 document.getElementById("score").innerText=score
+
 }
 
 if(player.x<obstacle.x+obstacle.w &&
 player.x+player.w>obstacle.x &&
 player.y<obstacle.y+obstacle.h &&
-player.h+player.y>obstacle.y){
+player.y+player.h>obstacle.y){
 
 alert("Game Over Score: "+score)
+
 score=0
 obstacle.x=500
-}
-
-if(score>20 && Math.random()<0.02){
-alert("🎉 Rare Item Unlocked!")
-}
-
-requestAnimationFrame(game)
 
 }
 
-game()
+requestAnimationFrame(runnerGame)
+
+}
+
+runnerGame()
+
+
+
+let clickScore=0
+
+function clickGame(){
+
+clickScore++
+
+document.getElementById("clickScore").innerText=clickScore
+
+}
+
+
+
+let secret=Math.floor(Math.random()*10)+1
+
+function guessGame(){
+
+let value=document.getElementById("guessInput").value
+
+if(value==secret){
+
+document.getElementById("guessResult").innerText="Correct!"
+
+}else{
+
+document.getElementById("guessResult").innerText="Try Again"
+
+}
+
+}
 
 </script>
 
 </body>
 </html>
 ```
-
