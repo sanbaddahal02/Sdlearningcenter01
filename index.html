@@ -1,221 +1,382 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sambad Dahal | CEO - SD Learning Center</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #3b82f6;
-            --accent: #10b981;
-            --dark-bg: #0b0f1a;
-            --glass: rgba(255, 255, 255, 0.03);
-            --card-grad: linear-gradient(145deg, #1e293b, #0b0f1a);
-            --glow: 0 0 30px rgba(59, 130, 246, 0.4);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--dark-bg); color: #e2e8f0; overflow-x: hidden; }
+<title>Sambad Dahal | SD Learning Center</title>
 
-        /* Animated Background Blobs */
-        .blob {
-            position: fixed; width: 500px; height: 500px; background: var(--secondary);
-            filter: blur(150px); opacity: 0.08; border-radius: 50%; z-index: -1;
-            animation: float 25s infinite alternate;
-        }
-        @keyframes float { from { transform: translate(-10%, -10%); } to { transform: translate(20%, 20%); } }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* Navigation */
-        nav {
-            background: rgba(11, 15, 26, 0.85); backdrop-filter: blur(20px);
-            padding: 1.2rem 8%; display: flex; justify-content: space-between;
-            align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .nav-logo { font-weight: 900; font-size: 1.4rem; letter-spacing: 2px; color: #fff; }
+<style>
 
-        /* Hero / About Me */
-        .hero {
-            max-width: 1200px; margin: 160px auto 80px; padding: 0 5%;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 80px; align-items: center;
-        }
-        .profile-3d {
-            position: relative; transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
-        }
-        .profile-3d:hover { transform: rotateY(-12deg) rotateX(7deg); }
-        .profile-img {
-            width: 100%; border-radius: 35px; border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.6);
-            transition: 0.4s;
-        }
-        .profile-3d:hover .profile-img { box-shadow: var(--glow); border-color: var(--secondary); }
+body{
+background:#0b0f1a;
+color:white;
+font-family:Arial;
+margin:0;
+}
 
-        .hero-text h1 { font-size: 3.5rem; color: #fff; margin-bottom: 0.5rem; }
-        .ceo-badge {
-            background: linear-gradient(90deg, var(--secondary), #6366f1);
-            padding: 8px 20px; border-radius: 50px; font-weight: 800;
-            display: inline-block; margin-bottom: 25px; font-size: 0.85rem; letter-spacing: 1px;
-        }
-        .hero-text p { font-size: 1.2rem; line-height: 1.8; opacity: 0.85; margin-bottom: 20px; }
+nav{
+background:#111827;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+position:fixed;
+width:100%;
+top:0;
+z-index:1000;
+}
 
-        /* Admission Form */
-        .admission-section { padding: 100px 8%; background: rgba(0,0,0,0.4); }
-        .form-container {
-            max-width: 900px; margin: 0 auto; background: var(--card-grad);
-            padding: 50px; border-radius: 45px; border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 60px 120px rgba(0,0,0,0.5);
-            position: relative;
-        }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
-        .input-group { display: flex; flex-direction: column; gap: 8px; }
-        .input-group label { font-size: 0.85rem; color: var(--secondary); font-weight: 800; text-transform: uppercase; }
-        .input-group input, .input-group select {
-            padding: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 15px; color: #fff; font-size: 1rem; transition: 0.3s;
-        }
-        .input-group input:focus { border-color: var(--secondary); outline: none; background: rgba(255,255,255,0.08); }
+section{
+padding:90px 8%;
+}
 
-        .submit-btn {
-            width: 100%; padding: 20px; margin-top: 35px; background: var(--secondary);
-            color: white; border: none; border-radius: 18px; font-weight: 800;
-            cursor: pointer; transition: 0.4s; font-size: 1.2rem; letter-spacing: 1px;
-        }
-        .submit-btn:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4); }
+.hero{
+margin-top:70px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+}
 
-        /* Success Message Styling */
-        #success-msg {
-            display: none; text-align: center; margin-top: 20px; color: var(--accent);
-            font-weight: bold; background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 10px;
-        }
+.hero img{
+width:100%;
+border-radius:20px;
+}
 
-        /* Payment Card */
-        .payment-card {
-            margin: 100px auto; background: #fff; color: #1a1a1a;
-            padding: 50px; border-radius: 40px; display: inline-block;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.5); text-align: center;
-            transform: rotateX(10deg); transition: 0.5s;
-        }
-        .payment-card:hover { transform: rotateX(0deg) scale(1.05); }
-        .qr-img { width: 240px; margin: 25px 0; border: 1px solid #eee; border-radius: 15px; }
+.hero h1{
+font-size:45px;
+}
 
-        footer { padding: 80px 8%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); opacity: 0.6; }
-    </style>
+.btn{
+background:#3b82f6;
+padding:12px 25px;
+border-radius:10px;
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+.skills{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+}
+
+.skill-card{
+background:#111827;
+padding:30px;
+border-radius:15px;
+text-align:center;
+}
+
+.skill-card i{
+font-size:35px;
+color:#3b82f6;
+}
+
+.fee-card{
+background:#111827;
+padding:40px;
+border-radius:20px;
+max-width:500px;
+margin:auto;
+}
+
+form{
+background:#111827;
+padding:40px;
+border-radius:20px;
+max-width:700px;
+margin:auto;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:8px;
+margin-bottom:20px;
+border-radius:10px;
+border:none;
+}
+
+button{
+background:#3b82f6;
+padding:15px;
+border:none;
+border-radius:10px;
+color:white;
+font-weight:bold;
+width:100%;
+}
+
+canvas{
+background:black;
+border-radius:15px;
+margin-top:20px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+background:#111827;
+}
+
+.whatsapp-float{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+color:white;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+z-index:1000;
+text-decoration:none;
+transition:0.3s;
+}
+
+.whatsapp-float:hover{
+transform:scale(1.1);
+background:#20b954;
+}
+
+</style>
 </head>
+
 <body>
-    <div class="blob"></div>
 
-    <nav>
-        <div class="nav-logo">SAMBAD DAHAL</div>
-        <div style="font-weight: bold;"><i class="fas fa-phone-alt"></i> 9801697735</div>
-    </nav>
+<nav>
+<div><b>SAMBAD DAHAL</b></div>
+<div>📞 9801697735</div>
+</nav>
 
-    <header class="hero">
-        <div class="profile-3d">
-            <img src="sambad.jpg" alt="Sambad Dahal" class="profile-img">
-        </div>
-        <div class="hero-text">
-            <span class="ceo-badge">CEO - SD LEARNING CENTER</span>
-            <h1>Sambad Dahal</h1>
-            <p>
-                I am a BBA student at **Mahendra Multiple Campus, Dharan**. As the CEO of **SD Learning Center**, I am passionate about education, technology, and helping people grow their skills.
-            </p>
-            <p>
-                I love connecting with learners, sharing knowledge, and building solutions that make a difference. Whether you need professional web development or coaching for Class 9-12 (Accounts & Economics), I am here to help you achieve your goals.
-            </p>
-            <a href="#admission" class="submit-btn" style="text-decoration: none; display: inline-block; width: auto; padding: 15px 45px;">Get Started Now</a>
-        </div>
-    </header>
+<section class="hero">
 
-    <section class="admission-section" id="admission">
-        <div class="form-container">
-            <h2 style="text-align: center; font-size: 2.5rem; color: #fff; margin-bottom: 10px;">Student Admission</h2>
-            <p style="text-align: center; opacity: 0.6; margin-bottom: 40px;">Enroll for Class 9–12 Coaching Excellence</p>
-            
-            <form id="admission-form" action= https://formspree.io/f/xreylnja method="POST">
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label>Student Name</label>
-                        <input type="text" name="name" placeholder="Full Name" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Address</label>
-                        <input type="text" name="address" placeholder="Dharan 17, Sunsari" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Age</label>
-                        <input type="number" name="age" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Phone Number</label>
-                        <input type="tel" name="phone" placeholder="98XXXXXXXX" required>
-                    </div>
-                    <div class="input-group">
-                        <label>School/College</label>
-                        <input type="text" name="school" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Class Level</label>
-                        <select name="class" required>
-                            <option value="" disabled selected>Select Class</option>
-                            <option value="9">Class 9</option>
-                            <option value="10">Class 10</option>
-                            <option value="11">Class 11</option>
-                            <option value="12">Class 12</option>
-                        </select>
-                    </div>
-                </div>
-                <button type="submit" id="submit-btn" class="submit-btn">Submit Application</button>
-                <div id="success-msg">Your admission details have been sent successfully!</div>
-            </form>
-        </div>
-    </section>
+<div>
+<h1>Sambad Dahal</h1>
 
-    <section style="text-align: center; padding-bottom: 100px;">
-        <div class="payment-card">
-            <h3>eSewa Transaction</h3>
-            <img src="esewa.png" alt="eSewa QR" class="qr-img">
-            <div style="font-weight: 900; color: #22c55e; font-size: 1.3rem;">Tara Devi Dahal</div>
-            <div style="font-weight: bold; letter-spacing: 1.5px;">9801697735</div>
-        </div>
-    </section>
+<p>CEO of SD Learning Center and passionate programmer helping students from Class 9-12.</p>
 
-    <footer>
-        <p>&copy; 2026 Sambad Dahal | SD Learning Center</p>
-        <p style="margin-top: 10px; font-size: 0.85rem;">Dharan 17, Sunsari, Nepal</p>
-    </footer>
+<p>Focus subjects: Accounts and Economics with exam preparation and past paper practice.</p>
 
-    <script>
-        const form = document.getElementById('admission-form');
-        const msg = document.getElementById('success-msg');
-        const btn = document.getElementById('submit-btn');
+<a href="#admission" class="btn">Join Now</a>
 
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            btn.innerHTML = "Sending...";
-            btn.disabled = true;
+</div>
 
-            const data = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
+<div>
+<img src="sambad.jpg">
+</div>
 
-            if (response.ok) {
-                msg.style.display = "block";
-                form.reset();
-                btn.innerHTML = "Submitted!";
-            } else {
-                alert("Something went wrong. Please try again.");
-                btn.disabled = false;
-                btn.innerHTML = "Submit Application";
-            }
-        });
-    </script>
+</section>
+
+<section>
+
+<h2 style="text-align:center">My Skills</h2>
+
+<div class="skills">
+
+<div class="skill-card">
+<i class="fas fa-code"></i>
+<h3>Programmer</h3>
+<p>HTML CSS JavaScript</p>
+</div>
+
+<div class="skill-card">
+<i class="fas fa-user-tie"></i>
+<h3>CEO</h3>
+<p>Founder of SD Learning Center</p>
+</div>
+
+<div class="skill-card">
+<i class="fas fa-gamepad"></i>
+<h3>Game Creator</h3>
+<p>Building simple web games</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 style="text-align:center">Course Fees</h2>
+
+<div class="fee-card">
+
+<p><b>Class 9-12 Coaching</b></p>
+
+<p>First Month (Fresher): <b>Rs 500</b></p>
+
+<p>From Second Month: <b>Rs 1000</b></p>
+
+<p>Classes: Zoom / Google Classroom</p>
+
+<p>Focus: +2 Accounts & Economics</p>
+
+<ul>
+<li>Weekly Tests</li>
+<li>Past Paper Practice</li>
+<li>Exam Preparation</li>
+</ul>
+
+</div>
+
+</section>
+
+<section id="admission">
+
+<h2 style="text-align:center">Student Admission</h2>
+
+<form action="https://formspree.io/f/xreylnja" method="POST">
+
+<label>Student Name</label>
+<input type="text" name="name" required>
+
+<label>Address</label>
+<input type="text" name="address" required>
+
+<label>Age</label>
+<input type="number" name="age">
+
+<label>Phone</label>
+<input type="tel" name="phone">
+
+<label>School</label>
+<input type="text" name="school">
+
+<label>Class</label>
+<select name="class">
+<option>9</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+</select>
+
+<label>Class Mode</label>
+<select name="mode">
+<option>Zoom</option>
+<option>Google Classroom</option>
+</select>
+
+<label>Subject</label>
+<select name="subject">
+<option>Accounts</option>
+<option>Economics</option>
+<option>Both</option>
+</select>
+
+<button type="submit">Submit Application</button>
+
+</form>
+
+</section>
+
+<section>
+
+<h2 style="text-align:center">Play My Game</h2>
+
+<center>
+
+<canvas id="game" width="500" height="300"></canvas>
+
+<p>Score: <span id="score">0</span></p>
+
+</center>
+
+</section>
+
+<section style="text-align:center">
+
+<h2>Pay Fees via eSewa</h2>
+
+<img src="esewa.png" width="200">
+
+<p><b>Tara Devi Dahal</b></p>
+
+<p>9801697735</p>
+
+</section>
+
+<footer>
+<p>© 2026 Sambad Dahal | SD Learning Center</p>
+</footer>
+
+<a href="https://wa.me/9801697735" class="whatsapp-float" target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+const canvas=document.getElementById("game")
+const ctx=canvas.getContext("2d")
+
+let player={x:50,y:250,w:30,h:30}
+let obstacle={x:500,y:250,w:30,h:30}
+
+let score=0
+
+document.addEventListener("keydown",function(e){
+
+if(e.code==="Space"){
+player.y=200
+
+setTimeout(()=>{
+player.y=250
+},300)
+
+}
+
+})
+
+function game(){
+
+ctx.clearRect(0,0,500,300)
+
+ctx.fillStyle="cyan"
+ctx.fillRect(player.x,player.y,player.w,player.h)
+
+ctx.fillStyle="red"
+ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
+
+obstacle.x-=5
+
+if(obstacle.x<0){
+obstacle.x=500
+score++
+document.getElementById("score").innerText=score
+}
+
+if(player.x<obstacle.x+obstacle.w &&
+player.x+player.w>obstacle.x &&
+player.y<obstacle.y+obstacle.h &&
+player.h+player.y>obstacle.y){
+
+alert("Game Over Score: "+score)
+score=0
+obstacle.x=500
+}
+
+if(score>20 && Math.random()<0.02){
+alert("🎉 Rare Item Unlocked!")
+}
+
+requestAnimationFrame(game)
+
+}
+
+game()
+
+</script>
+
 </body>
 </html>
+```
+
