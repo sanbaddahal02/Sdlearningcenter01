@@ -1,276 +1,362 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SD Learning Center | CEO Sambad Dahal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0b0f1a, #111827);
-            color: white;
-            scroll-behavior: smooth;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        /* NAVBAR */
-        nav {
-            background: rgba(17, 24, 39, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 15px 8%;
-            display: flex;
-            justify-content: space-between;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-sizing: border-box;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
+<title>SD Learning Center</title>
 
-        /* HERO SECTION */
-        .hero {
-            padding: 160px 8% 60px;
-            text-align: center;
-        }
-        .profile {
-            width: 160px; height: 160px;
-            border-radius: 50%;
-            border: 4px solid #3b82f6;
-            margin-bottom: 20px;
-            object-fit: cover;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-        }
-        .hero h1 {
-            font-size: 48px;
-            margin: 10px 0;
-            background: linear-gradient(90deg, #3b82f6, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero p {
-            color: #9ca3af;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.6;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* GAME HUB GRID */
-        .section-title { text-align: center; margin: 40px 0 20px; font-size: 28px; }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            padding: 0 8% 60px;
-        }
+<style>
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 30px;
-            backdrop-filter: blur(12px);
-            text-align: center;
-            transition: 0.3s;
-        }
-        .glass-card:hover { transform: translateY(-10px); border-color: #3b82f6; }
+body{
+margin:0;
+font-family:Segoe UI;
+background:#0b0f1a;
+color:white;
+overflow-x:hidden;
+}
 
-        /* SNAKE & LADDERS BOARD */
-        #snl-board {
-            width: 250px; height: 250px;
-            margin: 20px auto;
-            display: grid; grid-template-columns: repeat(10, 1fr);
-            border: 4px solid #1e293b; position: relative;
-            background: #0f172a;
-        }
-        .square { border: 0.1px solid rgba(255,255,255,0.05); font-size: 7px; display: flex; align-items: center; justify-content: center; color: #4b5563; }
-        #player-token {
-            width: 15px; height: 15px; background: radial-gradient(circle, #ef4444, #b91c1c);
-            border-radius: 50%; position: absolute; transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 10px #ef4444; z-index: 5;
-        }
+/* NAV */
 
-        /* PRICING */
-        .price-tag { font-size: 24px; color: #22c55e; font-weight: bold; margin: 15px 0; }
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:#111827;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+z-index:1000;
+}
 
-        /* BUTTONS */
-        .mainBtn {
-            background: linear-gradient(135deg, #3b82f6, #9333ea);
-            border: none; padding: 14px 30px; border-radius: 12px;
-            color: white; font-weight: bold; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: 0.3s;
-        }
-        .mainBtn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4); }
+/* HERO */
 
-        /* ADMISSION POPUP */
-        .popup {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
-            display: none; justify-content: center; align-items: center; z-index: 2000;
-        }
-        .formBox {
-            background: #161e2d; padding: 40px; border-radius: 24px;
-            width: 380px; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: popIn 0.4s ease;
-        }
-        @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        input, select {
-            width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px;
-            border: none; background: #0f172a; color: white; box-sizing: border-box;
-        }
+.hero{
+padding:150px 8% 80px;
+text-align:center;
+}
 
-        /* ADMIN PANEL */
-        .admin-section { padding: 60px 8%; text-align: center; background: rgba(0,0,0,0.2); }
-        .data-card { background: #1f2937; padding: 15px; border-radius: 10px; margin: 10px auto; max-width: 500px; text-align: left; border-left: 4px solid #3b82f6; }
+.hero h1{
+font-size:45px;
+background:linear-gradient(90deg,#3b82f6,#a855f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-        /* WHATSAPP */
-        .whatsapp {
-            position: fixed; bottom: 30px; right: 30px;
-            background: #25D366; width: 60px; height: 60px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: white; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-    </style>
+.hero p{
+color:#9ca3af;
+max-width:700px;
+margin:auto;
+}
+
+.profile{
+width:170px;
+border-radius:50%;
+border:5px solid #3b82f6;
+margin-bottom:20px;
+}
+
+/* 3D CARDS */
+
+.section{
+padding:80px 8%;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.card{
+background:#161e2d;
+padding:30px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.03);
+box-shadow:0 25px 60px rgba(0,0,0,0.8);
+}
+
+/* BUTTON */
+
+.mainBtn{
+background:linear-gradient(135deg,#3b82f6,#9333ea);
+border:none;
+padding:14px 30px;
+border-radius:12px;
+color:white;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* ADMISSION POPUP */
+
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.7);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.formBoard{
+background:#161e2d;
+padding:40px;
+border-radius:20px;
+width:350px;
+text-align:center;
+box-shadow:0 20px 50px rgba(0,0,0,.7);
+}
+
+input{
+width:90%;
+padding:12px;
+border:none;
+border-radius:10px;
+margin-bottom:10px;
+background:#0f172a;
+color:white;
+}
+
+.submit{
+background:#22c55e;
+border:none;
+padding:12px;
+width:95%;
+border-radius:10px;
+color:white;
+cursor:pointer;
+}
+
+/* QR */
+
+.qr{
+width:180px;
+margin-top:15px;
+border-radius:10px;
+border:5px solid white;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#25D366;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:white;
+text-decoration:none;
+}
+
+</style>
 </head>
+
 <body>
 
 <nav>
-    <div><b style="color:#3b82f6">SD</b> Learning Center</div>
-    <div style="font-size: 14px; opacity: 0.8;">CEO Sambad Dahal</div>
+<div><b style="color:#3b82f6">SD</b> Learning Center</div>
+<div>Sambad Dahal</div>
 </nav>
 
 <header class="hero">
-    <img src="sambad.jpg" class="profile" alt="Sambad Dahal">
-    <h1>Sambad Dahal</h1>
-    <p>
-        BBA Student at <b>Mahendra Multiple Campus</b> | CEO of SD Learning Center. <br>
-        Expert in <b>Computer Science & Programming</b> (C, C++, Java, JS, Python). <br>
-        Our team provides specialist tuition for <b>Accounts & Economics</b> (Class 9-12).
-    </p>
-    <button class="mainBtn" style="margin-top: 25px;" onclick="togglePopup(true)">
-        🎓 Student Admission
-    </button>
+
+<img src="sambad.jpg" class="profile">
+
+<h1>Sambad Dahal</h1>
+
+<p>
+
+CEO of <b>SD Learning Center</b>.  
+I am a <b>Programmer and Game Developer</b>.  
+
+I know many programming languages such as  
+<b>C, C++, Java, JavaScript</b> and many other coding languages.
+
+I also teach <b>Computer Science and Basic Programming</b>.
+
+</p>
+
+<button class="mainBtn" onclick="openForm()">
+🎓 Student Admission
+</button>
+
 </header>
 
-<h2 class="section-title">Gaming Hub & Fees</h2>
+<!-- COURSES -->
 
-<div class="grid-container">
-    <div class="glass-card">
-        <h3>Snake & Ladders</h3>
-        <div id="snl-board">
-            <div id="player-token"></div>
-        </div>
-        <div id="dice-display" style="font-size: 2rem; margin-bottom: 10px;">🎲</div>
-        <button class="mainBtn" onclick="rollDice()">Roll Dice</button>
-        <p style="font-size: 12px; margin-top: 10px; opacity: 0.6;">Current Square: <span id="pos-val">1</span></p>
-    </div>
+<section class="section">
 
-    <div class="glass-card">
-        <h3>Course Fees</h3>
-        <p style="font-size: 14px; opacity: 0.7;">Universal pricing for all subjects</p>
-        <div class="price-tag">1st Month: Rs. 500</div>
-        <div class="price-tag" style="color: #3b82f6;">Regular: Rs. 1000</div>
-        <div style="background: white; padding: 10px; display: inline-block; border-radius: 10px; margin-top: 10px;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=SDLearningCenterPayment" alt="QR Code" style="display: block;">
-        </div>
-        <p style="font-size: 12px; margin-top: 5px; color: #9ca3af;">Scan to pay via eSewa/Khalti</p>
-    </div>
+<h2 style="text-align:center;">Courses</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Class 9–12 Tuition</h3>
+
+<p>
+Quality teaching for school students.
+
+Classes run through  
+<b>Zoom and Google Classroom</b>.
+</p>
+
 </div>
 
-<div class="popup" id="formPopup">
-    <div class="formBox">
-        <h2 style="margin-top:0">Admission Form</h2>
-        <form id="enrollForm">
-            <input type="text" id="sName" placeholder="Student Name" required>
-            <input type="text" id="sAddress" placeholder="Address" required>
-            <select id="sCourse">
-                <option value="Computer Science">Computer Science (+2)</option>
-                <option value="Programming">Programming (C, C++, Java, Python)</option>
-                <option value="Accounts">Accounts (Specialist Team)</option>
-                <option value="Economics">Economics (Specialist Team)</option>
-            </select>
-            <input type="tel" id="sPhone" placeholder="Phone Number" required>
-            <button class="mainBtn" type="submit" style="width: 100%; padding: 12px;">Submit Admission</button>
-        </form>
-        <button onclick="togglePopup(false)" style="background:none; border:none; color:#ef4444; margin-top:15px; cursor:pointer;">Close</button>
-    </div>
+<div class="card">
+
+<h3>Accounts & Economics</h3>
+
+<p>
+
+Our student teaching team helps teach  
+<b>+2 Accounts and Economics</b> clearly.
+
+</p>
+
 </div>
 
-<section class="admin-section">
-    <h2>Admin Dashboard</h2>
-    <input type="password" id="adminPass" placeholder="Enter Password" style="width: 200px;">
-    <button class="mainBtn" onclick="checkAdmin()" style="padding: 10px 20px;">View Data</button>
-    <div id="adminData" style="margin-top: 20px;"></div>
+<div class="card">
+
+<h3>Computer Science</h3>
+
+<p>
+
+Learn programming including
+
+C  
+C++  
+Java  
+JavaScript  
+Basic Coding  
+and more.
+
+</p>
+
+</div>
+
+</div>
+
 </section>
 
+<!-- GAMING HUB -->
+
+<section class="section">
+
+<h2 style="text-align:center;">Gaming Hub</h2>
+
+<div class="card">
+
+<h3>🎮 Game Developing...</h3>
+
+<p>
+
+A gaming platform created by Sambad Dahal.  
+New games with high graphics will be released soon.
+
+Stay tuned!
+
+</p>
+
+</div>
+
+</section>
+
+<!-- PAYMENT -->
+
+<section class="section">
+
+<h2 style="text-align:center;">Course Fee</h2>
+
+<div class="card">
+
+<p>
+
+<b>First Month Fee: Rs.500</b><br>
+<b>From Second Month: Rs.1000</b>
+
+</p>
+
+<img src="esewa.png" class="qr">
+
+</div>
+
+</section>
+
+<!-- ADMISSION FORM -->
+
+<div class="popup" id="formPopup">
+
+<div class="formBoard">
+
+<h2>Admission Form</h2>
+
+<form>
+
+<input placeholder="Student Name">
+
+<input placeholder="Class">
+
+<input placeholder="School / College Name">
+
+<input placeholder="Address">
+
+<input placeholder="Age">
+
+<input placeholder="Phone Number">
+
+<button class="submit">Submit</button>
+
+</form>
+
+<br>
+
+<button onclick="closeForm()">Close</button>
+
+</div>
+
+</div>
+
 <a href="https://wa.me/9801697735" class="whatsapp">
-    <i class="fab fa-whatsapp"></i>
+<i class="fab fa-whatsapp"></i>
 </a>
 
 <script>
-    // SNAKE GAME LOGIC
-    let currentPos = 1;
-    const hazards = { 99: 1, 65: 40, 25: 5, 3: 22, 50: 75, 8: 30 };
-    const board = document.getElementById('snl-board');
 
-    for(let i=100; i>=1; i--) {
-        const sq = document.createElement('div');
-        sq.className = 'square'; sq.id = 'sq' + i; sq.innerText = i;
-        board.appendChild(sq);
-    }
+function openForm(){
+document.getElementById("formPopup").style.display="flex"
+}
 
-    function updateToken() {
-        const target = document.getElementById('sq' + currentPos);
-        const token = document.getElementById('player-token');
-        token.style.top = target.offsetTop + "px";
-        token.style.left = target.offsetLeft + "px";
-        document.getElementById('pos-val').innerText = currentPos;
-    }
+function closeForm(){
+document.getElementById("formPopup").style.display="none"
+}
 
-    function rollDice() {
-        const roll = Math.floor(Math.random() * 6) + 1;
-        document.getElementById('dice-display').innerText = ['⚀','⚁','⚂','⚃','⚄','⚅'][roll-1];
-        if(currentPos + roll <= 100) currentPos += roll;
-        
-        if(hazards[currentPos]) {
-            setTimeout(() => {
-                alert(hazards[currentPos] > currentPos ? "🪜 Ladder Climb!" : "🐍 Snake Bite!");
-                currentPos = hazards[currentPos];
-                updateToken();
-            }, 500);
-        }
-        updateToken();
-        if(currentPos === 100) alert("Victory! Sambad Dahal welcomes you.");
-    }
-    window.onload = updateToken;
-
-    // FORM & ADMIN LOGIC
-    function togglePopup(show) { document.getElementById('formPopup').style.display = show ? 'flex' : 'none'; }
-
-    document.getElementById('enrollForm').onsubmit = function(e) {
-        e.preventDefault();
-        const data = {
-            n: document.getElementById('sName').value,
-            a: document.getElementById('sAddress').value,
-            c: document.getElementById('sCourse').value,
-            p: document.getElementById('sPhone').value
-        };
-        const list = JSON.parse(localStorage.getItem('sd_students') || '[]');
-        list.push(data);
-        localStorage.setItem('sd_students', JSON.stringify(list));
-        alert("Success! Admission Submitted.");
-        togglePopup(false);
-    };
-
-    function checkAdmin() {
-        if(document.getElementById('adminPass').value === "active001") {
-            const list = JSON.parse(localStorage.getItem('sd_students') || '[]');
-            document.getElementById('adminData').innerHTML = list.map(s => 
-                `<div class="data-card"><b>${s.n}</b> - ${s.c}<br><small>${s.a} | ${s.p}</small></div>`
-            ).join('');
-        } else { alert("Wrong Password!"); }
-    }
 </script>
+
+</body>
+</html>
+```
+
 
 </body>
 </html>
